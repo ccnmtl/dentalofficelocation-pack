@@ -15,9 +15,6 @@ var User = Backbone.Model.extend({
 });
 
 var MapLayer = Backbone.Model.extend({
-    toJSON: function() {
-        return this.get('resource_uri');
-    },
     toTemplate: function() {
         return _(this.attributes).clone();
     }
@@ -33,10 +30,6 @@ var MapLayerList = Backbone.Collection.extend({
             }
         }
     },
-    getByDataId: function(id) {
-        var internalId = this.urlRoot + id + '/';
-        return this.get(internalId);
-    },
     removeByDataId: function(id) {
         var internalId = this.urlRoot + id + '/';
         this.remove(internalId);
@@ -51,9 +44,6 @@ var MapLayerList = Backbone.Collection.extend({
 });
 
 var ActorQuestion = Backbone.Model.extend({
-    toJSON: function() {
-        return this.get('resource_uri');
-    },
     toTemplate: function() {
         return _(this.attributes).clone();
     }
@@ -68,10 +58,6 @@ var ActorQuestionList = Backbone.Collection.extend({
                 this.add(q);
             }
         }
-    },
-    getByDataId: function(id) {
-        var internalId = this.urlRoot + id + '/';
-        return this.get(internalId);
     },
     toTemplate: function() {
         var a = [];
@@ -90,9 +76,6 @@ var Actor = Backbone.Model.extend({
             this.set('questions', new ActorQuestionList(attributes.questions));
         }
     },
-    toJSON: function() {
-        return this.get('resource_uri');
-    },
     toTemplate: function() {
         var json = _.clone(this.attributes);
         json.questions = this.get('questions').toTemplate();
@@ -102,10 +85,6 @@ var Actor = Backbone.Model.extend({
 
 var ActorList = Backbone.Collection.extend({
     model: Actor,
-    getByDataId: function(id) {
-        var internalId = this.urlRoot + id + '/';
-        return this.get(internalId);
-    },
     initialize: function(lst) {
         if (lst !== undefined && lst instanceof Array) {
             for (var i = 0; i < lst.length; i++) {
@@ -177,9 +156,6 @@ var Strategy = Backbone.Model.extend({
             this.set('question', new ActorQuestion(attrs.question));
         }
     },
-    toJSON: function() {
-        return this.get('resource_uri');
-    },
     toTemplate: function() {
         var json = _.clone(this.attributes);
         json.question = this.get('question').toTemplate();
@@ -201,10 +177,6 @@ var StrategyList = Backbone.Collection.extend({
                 this.add(x);
             }
         }
-    },
-    getByDataId: function(id) {
-        var internalId = this.urlRoot + id + '/';
-        return this.get(internalId);
     },
     toTemplate: function() {
         var a = [];
@@ -245,7 +217,7 @@ var UserState = Backbone.Model.extend({
         this.get('actors').add(actor);
     },
     isActorSelected: function(actor) {
-        var obj = this.get('actors').getByDataId(actor.get('id'));
+        var obj = this.get('actors').get(actor.get('id'));
         return typeof obj !== 'undefined' && obj !== null;
     },
     viewStrategy: function(strategy) {
@@ -253,7 +225,7 @@ var UserState = Backbone.Model.extend({
     },
     isStrategyViewed: function(strategy) {
         var obj = this.get(
-            'strategies_viewed').getByDataId(strategy.get('id'));
+            'strategies_viewed').id(strategy.get('id'));
         return typeof obj !== 'undefined' && obj !== null;
     },
     selectStrategy: function(strategy) {
