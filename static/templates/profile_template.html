@@ -1,0 +1,80 @@
+<img id="x" class="btn cancel" src="{% static url %}img/close.png"/>
+<div class="question_state">
+    <% if (!select_stakeholder && questions.length > 0) { %>
+        <% for (var i=0; i < 3; i++, asked--) { %><% if (asked > 0) { %><span class="asked">&bull;</span><% } else { %><span>&bull;</span><% } %><% } %>
+    <% } %>
+</div>
+<div class="title-container">
+    <img class="left" src="<%= image %>"></img>&nbsp;&nbsp;
+    <div class="left">
+        <div class="name"><%= name %></div>
+        <div class="title"><%= title %></div>
+    </div>
+    <div class="visualclear"></div>
+</div>
+<div class="actor-profile-container"><%= profile %></div>
+<div>
+    <div class="interview left">
+        <% if (select_stakeholder) { %>
+            <% if (questions.length > 0) { %>
+                <% if (remaining_stakeholders > 0) { %>
+                    <div class="select-actor-container">
+                        <div><b>Do you want to interview <%= name %>?</b></div>
+
+                        <div><button class="btn interview btn-info">Yes</button><button class="btn cancel btn-danger">Not Right Now</button></div>
+                    </div>
+                <% } else { %>
+                    <div><br /><b>You've already selected four stakeholders.</b></div>
+                <% } %>
+            <% } %>
+        <% } else { %>
+            <div>
+                <% _.each(questions, function(q, index) { %>
+                    <% var asked = false; %>
+                    <% _.each(responses, function(r) { if (!asked && q.id === r.attributes.question.attributes.id) { asked = true; } }); %>
+                    <div class="accordion-group <% if (index/2 === 0) { %> even <% } %>">
+                        <div class="accordion-heading">
+                            <div class="question"><%= q.question %></div>
+                            <% if (asked) { %>
+                                <button class="btn btn-warning ask" data-id="<%= q.id %>" <% if (current_question) { %> disabled="disabled" <% } %> >
+                                    Asked
+                                </button>
+                            <% } else if (remaining_questions <= 0) { %>
+                                <button class="btn asked" data-id="<%= q.id %>" disabled="disabled">
+                                    No more questions
+                                </button>
+                            <% } else { %>
+                                <button class="btn ask btn-info" data-id="<%= q.id %>" <% if (current_question) { %> disabled="disabled" <% } %>>
+                                    Ask
+                                </button>
+                            <% } %>
+                            <div class="visualclear"></div>
+                        </div>
+                        <% if (current_question && current_question.attributes.id === q.id) { %>
+                            <div class="accordion-body" style="display: block">
+                        <% } else { %>
+                            <div class="accordion-body" style="display: none">
+                        <% } %>
+
+                            <div class="accordion-inner">
+                                <%= q.answer %>
+                                <button class="btn done" data-complete-text="Close" data-loading-text="Saving...">Close</button>
+                            </div>
+                        </div>
+                        <div class="visualclear"></div>
+                    </div>
+
+                <% }); %>
+            </div>
+        <% } %>
+    </div>
+    <div class="interview_notepad right">
+        <h3 class="popover-title">Notepad</h3>
+        <div class="popover-content">
+            <textarea class="notepad scrollable"><%= notes %></textarea>
+        </div>
+        <div><button class="btn cancel close_profile">Done</button></div>
+        <div class="visualclear"></div>
+    </div>
+    <div class="visualclear"></div>
+</div>
