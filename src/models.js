@@ -10,11 +10,19 @@ var BOARDMEMBER_LIMIT = 6;
 
 var User = Backbone.Model.extend({
     defaults: {
+    }
+});
 
+var Notepad = Backbone.Model.extend({
+    defaults: {
+        notes: ''
     }
 });
 
 var MapLayer = Backbone.Model.extend({
+    defaults: {
+        visible: false
+    },
     toTemplate: function() {
         return _(this.attributes).clone();
     }
@@ -29,10 +37,6 @@ var MapLayerList = Backbone.Collection.extend({
                 this.add(x);
             }
         }
-    },
-    removeByDataId: function(id) {
-        var internalId = this.urlRoot + id + '/';
-        this.remove(internalId);
     },
     toTemplate: function() {
         var a = [];
@@ -318,6 +322,7 @@ var UserState = Backbone.Model.extend({
     }
 });
 
+module.exports.Notepad = Notepad;
 module.exports.ActorList = ActorList;
 module.exports.ActorQuestionList = ActorQuestionList;
 module.exports.MapLayerList = MapLayerList;

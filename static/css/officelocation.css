@@ -1,0 +1,211 @@
+.spacer {
+    margin-top: 10px;
+}
+
+.actor_container:hover {
+    margin: 2px;
+}
+
+img.actor {
+    cursor: pointer;
+}
+
+.actor_state {
+    border: 1px solid #dedede;
+    width: 40px;
+    height: 56px;
+    margin: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+
+.actor_state.empty {
+    text-align: center;
+    vertical-align: middle;
+    cursor: default;
+}
+
+.actor_state h1 {
+    margin-top: 0;
+}
+
+textarea.notepad {
+    width: 270px;
+    height: 250px;
+    resize: none;
+}
+
+a.btn.btn-default {
+    margin-left: 10px;
+}
+
+.row.map-container {
+    background-color: #f2f2f2;
+}
+
+.map-layers {
+    position: relative;
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.map-layer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.actor_container {
+    position: absolute;
+    z-index: 1000;
+}
+
+/** Map Legends **/
+.map_legend_container {
+    padding-top: 10px;
+    background-color: white;
+}
+
+.map_legend_container {
+    margin: 5px 5px 5px 0;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid #DDD;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.map_legend_container h3
+{
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: normal !important;
+}
+
+.map_legend {
+    width: 192px;
+}
+
+.map_legend h5 {
+    font-size: 14px !important;
+    padding: 5px !important;
+    margin: -3px !important;
+    -webkit-border-top-left-radius: 4px;
+    -moz-border-top-left-radius: 4px;
+    border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -moz-border-top-right-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: #D9EDF7;
+}
+
+
+.key-item {
+    min-height: 20px;
+    padding: 10px 0 5px 0;
+}
+
+.key-icon {
+    float: left;
+    height: 20px;
+    width: 20px;
+}
+
+.key-text {
+    float: left;
+    margin-left: 5px;
+    font-size: 11px;
+    line-height: 12px;
+    max-width: 162px;
+}
+
+#base_map_layer .map_legend {
+    width: auto;
+    border: 0;
+}
+
+#base_map_layer .key-item {
+    float: left;
+    min-height: 20px;
+    padding: 10px 20px 5px 0;
+}
+
+#base_map_layer .key-icon {
+    float: left;
+    height: 20px;
+    width: 20px;
+}
+
+#base_map_layer .key-text {
+    float: left;
+    margin-left: 5px;
+    font-size: 11px;
+    line-height: 12px;
+}
+
+
+/**
+.career_location_map_container {
+    background-color: #f2f2f2;
+    text-align: center;
+}
+
+.career_location_base_layer,
+.career_location_map_layer {
+
+}
+
+.career_location_map_layers {
+    position: relative;
+    height: 400px;
+    border: 1px solid #F2F2F2;
+}
+
+.career_location_map_layer {
+    opacity: .70;
+    -moz-opacity:0.70;
+    filter: Alpha(Opacity=70);
+    background: transparent;
+
+}
+
+.career_location_summary h2,
+.toolbar h2.left {
+    margin: 0px !important;
+}
+
+.actor_container {
+    position: absolute;
+    z-index: 1000;
+}
+
+.profile {
+    position: absolute;
+    z-index: 1003;
+    border: 1px solid #708090;
+    width: 815px;
+    min-height: 430px;
+    padding: 10px;
+    background-color: #eaeaea;
+    left: 10px;
+}
+
+.profile h3 {
+    padding-top: 0px;
+}
+
+.profile .title-container .name {
+    margin-top: 5px;
+    margin-left: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.profile .title-container .title {
+    margin-left: 15px;
+}
+**/
