@@ -8,6 +8,11 @@ var STAKEHOLDER_LIMIT = 4;
 var QUESTION_LIMIT = 3;
 var BOARDMEMBER_LIMIT = 6;
 
+Backbone.sync = function() {
+    // do nothing;
+    return false;
+};
+
 var User = Backbone.Model.extend({
     defaults: {
     }
@@ -48,6 +53,9 @@ var MapLayerList = Backbone.Collection.extend({
 });
 
 var ActorQuestion = Backbone.Model.extend({
+    defaults: {
+        asked: false
+    },
     toTemplate: function() {
         return _(this.attributes).clone();
     }
@@ -74,15 +82,29 @@ var ActorQuestionList = Backbone.Collection.extend({
 });
 
 var Actor = Backbone.Model.extend({
+    defaults: {
+        interviewed: false
+    },
     initialize: function(attributes) {
         if (attributes) {
             Backbone.Model.prototype.initialize.apply(this, attributes);
             this.set('questions', new ActorQuestionList(attributes.questions));
         }
     },
+    asked: function() {
+        var questions = this.get('questions');
+        var n = 0;
+        for (var i = 0; i < questions.length; i++) {
+            if (questions.at(i).get('asked')) {
+                n++;
+            }
+        }
+        return n;
+    },
     toTemplate: function() {
         var json = _.clone(this.attributes);
         json.questions = this.get('questions').toTemplate();
+        json.asked = this.asked();
         return json;
     }
 });
@@ -97,100 +119,25 @@ var ActorList = Backbone.Collection.extend({
             }
         }
     },
-    parse: function(response) {
-        return response.objects || response;
-    },
     toTemplate: function() {
         var a = [];
         this.forEach(function(item) {
             a.push(item.toTemplate());
         });
         return a;
-    }
-});
-
-var ActorResponse = Backbone.Model.extend({
-    initialize: function(attrs) {
-        if (attrs) {
-            this.set('actor', new Actor(attrs.actor));
-            this.set('question', new ActorQuestion(attrs.question));
-        }
     },
-    parse: function(response) {
-        if (response) {
-            response.actor = new Actor(response.actor);
-            response.question = new ActorQuestion(response.question);
-        }
-        return response;
-    },
-    toTemplate: function() {
-        var json = _(this.attributes).clone();
-        json.question = this.get('question').toTemplate();
-        json.actor = this.get('actor').toTemplate();
-        return json;
-    }
-});
-
-var ActorResponseList = Backbone.Collection.extend({
-    model: ActorResponse,
-    getResponsesByActor: function(actor) {
-        var responses = [];
-        this.forEach(function(obj) {
-            if (actor.get('id') === obj.get('actor').get('id')) {
-                responses.push(obj);
+    interviewCount: function() {
+        var n = 0;
+        this.forEach(function(item) {
+            if (item.get('interviewed')) {
+                n++;
             }
         });
-        return responses;
-    },
-    parse: function(response) {
-        return response.objects || response;
-    },
-    toTemplate: function() {
-        var a = [];
-        this.forEach(function(item) {
-            a.push(item.toTemplate());
-        });
-        return a;
+        return n;
     }
 });
 
-var Strategy = Backbone.Model.extend({
-    initialize: function(attrs) {
-        if (attrs) {
-            this.set('question', new ActorQuestion(attrs.question));
-        }
-    },
-    toTemplate: function() {
-        var json = _.clone(this.attributes);
-        json.question = this.get('question').toTemplate();
-
-        if (json.pdf) {
-            var a = json.pdf.split('/');
-            json.pdf = a[a.length - 1];
-        }
-        return json;
-    }
-});
-
-var StrategyList = Backbone.Collection.extend({
-    model: Strategy,
-    initialize: function(lst) {
-        if (lst !== undefined && lst instanceof Array) {
-            for (var i = 0; i < lst.length; i++) {
-                var x = new Strategy(lst[i]);
-                this.add(x);
-            }
-        }
-    },
-    toTemplate: function() {
-        var a = [];
-        this.forEach(function(item) {
-            a.push(item.toTemplate());
-        });
-        return a;
-    }
-});
-
+/**
 var UserState = Backbone.Model.extend({
     defaults: {
         layers: new MapLayerList(),
@@ -200,22 +147,6 @@ var UserState = Backbone.Model.extend({
         strategies_viewed: new StrategyList(),
         strategy_selected: new Strategy(),
         strategy_responses: new ActorResponseList()
-    },
-    parse: function(response) {
-        if (response) {
-            response.layers = new MapLayerList(response.layers);
-            response.actors = new ActorList(response.actors);
-            response.responses = new ActorResponseList(response.responses);
-            response.strategies_viewed =
-                new StrategyList(response.strategies_viewed);
-            if (response.strategy_selected) {
-                response.strategy_selected =
-                    new Strategy(response.strategy_selected);
-            }
-            response.strategy_responses =
-                new ActorResponseList(response.strategy_responses);
-        }
-        return response;
     },
     selectActor: function(actor) {
         this.get('actors').add(actor);
@@ -321,6 +252,7 @@ var UserState = Backbone.Model.extend({
         return true;
     }
 });
+**/
 
 module.exports.Notepad = Notepad;
 module.exports.ActorList = ActorList;
