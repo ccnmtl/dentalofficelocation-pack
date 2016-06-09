@@ -35,12 +35,13 @@
         <a class="btn right" href="#" id="toggle_map_layers"><i class="icon-picture"></i> Map Layers</a>
         <h3 class="popover-title">Select Map Layers</h3>
         <div class="popover-content">
-            {% for layer in block.layers %}
+            <% for (var i=0; i < layers.length; i++) { %>
+                <% var layer = layers[i]; %>
                 <div>
-                    <input type="checkbox" class="select-layer" data-id="{{layer.id}}" id="select_layer_{{layer.id}}" value="{{layer.name}}"></input>
-                    {{ layer.display_name }}
+                    <input type="checkbox" class="select-layer" data-id="<%=layer.id%>" id="select_layer_<%=layer.id%>" value="<%=layer.name%>"></input>
+                    <%= layer.display_name %>
                 </div>
-            {% endfor %}
+            <% } %>
             <div class="popover-close"><a class="btn" href="#">Close</a></div>
         </div>
     </div>
@@ -63,48 +64,50 @@
     </div>
 
     <div class="interview_state">
-        {%  for x in block.max_stakeholders %}
-            <div class="actor_state left empty"><h1>{{ forloop.counter }}</h1></div>
-        {%  endfor %}
+        <% for (var i=0; i < 4; i++) { %>
+            <div class="actor_state left empty"><h1><%= i %></h1></div>
+        <% } %>
     </div>
     <div class="visualclear"></div>
 
     <div class="career_location_map_container">
         <div class="career_location_map">
-            {%  for actor in block.stakeholders.all %}
-                <div id="actor_map_{{actor.id}}" class="actor_container" style="left: {{actor.left}}px; top: {{actor.top}}px">
-                <img data-id="{{actor.id}}"
+            <% for (var i=0; i < actors.length; i++) { %>
+                <% var actor = actors[i]; %>
+                <div id="actor_map_<%=actor.id%>" class="actor_container" style="left: <%=actor.left%>px; top: <%=actor.top%>px">
+                <img data-id="<%=actor.id%>"
                      class="actor"
-                     src="{{actor.image.url}}"
+                     src="<%=actor.image.url%>"
                      alt="interview stakeholder"></img>
                     <div class="question_state"></div>
                 </div>
-            {%  endfor %}
+            <% } %>
 
-            <img class="career_location_base_layer" src="{{block.base_layer.image.url}}" alt="career location base map" />
-            {% for layer in block.layers %}
-                <img id="map_layer_{{layer.id}}"
-                     data-id="{{layer.id}}"
+            <img class="career_location_base_layer" src="<%=block.base_layer.image.url%>" alt="career location base map" />
+            <% for (var i=0; i < layers.length; i++) { %>
+                <% var layer = layers[i]; %>
+                <img id="map_layer_<%=layer.id%>"
+                     data-id="<%=layer.id%>"
                      class="career_location_map_layer"
-                     src="{{layer.image.url}}"
+                     src="<%=layer.image.url%>"
                      alt="career location base map"
-                     style="display: none; z-index: {{layer.z_index}}; opacity:0.{{layer.transparency}}; -moz-opacity:0.{{layer.transparency}}; filter:alpha(opacity={{layer.transparency}});"></img>
-            {% endfor %}
+                     style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
+            <% } %>
         </div>
         <div class="visualclear"></div>
         <div class="map_legend_container">
             <h3>Map Legends</h3>
-        <div id="base_map_layer">{{block.base_layer.legend|safe}}</div>
-
-            {% for layer in block.layers %}
-                <div id="map_legend_{{layer.id}}"
-                     data-id="{{layer.id}}"
+        <div id="base_map_layer"><%=block.base_layer.legend|safe%></div>
+            <% for (var i=0; i < layers.length; i++) { %>
+                <% var layer = layers[i]; %>
+                <div id="map_legend_<%=layer.id%>"
+                     data-id="<%=layer.id%>"
                      class="map_legend left"
                      style="display: none">
-                    <h5>{{layer.display_name}}</h5>
-                    {{layer.legend|safe}}
+                    <h5><%=layer.display_name%></h5>
+                    <%=layer.legend|safe%>
                 </div>
-            {% endfor %}
+            <% } %>
             <div class="visualclear"></div>
         </div>
     </div>

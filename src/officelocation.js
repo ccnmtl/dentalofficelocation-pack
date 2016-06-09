@@ -4,9 +4,9 @@ jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
 var NumberedStepsView = require('./steps.js');
-var models = require('./models.js');
 
 var OfficeLocationApp = {
+    Models: require('./models.js'),
     Views: {},
     inst: {},
 
@@ -82,8 +82,34 @@ OfficeLocationApp.Views.MapView = Backbone.View.extend({
 OfficeLocationApp.Views.InterviewView = Backbone.View.extend({
     initialize: function(options) {
         _.bindAll(this, 'render');
+
+        var actors = require('../static/json/actors.json');
+        this.actors = new OfficeLocationApp.Models.ActorList(actors);
+
+        var questions = require('../static/json/questions.json');
+        this.questions =
+            new OfficeLocationApp.Models.ActorQuestionList(questions);
+
+        var layers = require('../static/json/layers.json');
+        this.layers =
+            new OfficeLocationApp.Models.MapLayerList(layers);
+
+        this.template =
+            require('../static/templates/page_one.html');
+
+        this.profile_template =
+            require('../static/templates/profile_template.html');
+        this.actor_state_template =
+            require('../static/templates/actor_state_template.html');
+        this.actor_map_template =
+            require('../static/templates/actor_map_template.html');
     },
     render: function() {
+        var markup = this.template({
+            actors: this.actors,
+            layers: this.layers});
+        this.$el.html(markup);
+        this.$el.show();
     }
 });
 
@@ -92,22 +118,34 @@ OfficeLocationApp.Views.PickLocationView = Backbone.View.extend({
         _.bindAll(this, 'render');
     },
     render: function() {
+        this.$el.html('Pick Location');
+        this.$el.show();
+        this.trigger('complete', this);
     }
 });
 
 OfficeLocationApp.Views.BoardView = Backbone.View.extend({
     initialize: function(options) {
         _.bindAll(this, 'render');
+
+        var actors = require('../static/json/boardmembers.json');
+        this.actors = new OfficeLocationApp.Models.ActorList(actors);
     },
     render: function() {
+        this.$el.html('Board View');
+        this.$el.show();
+        this.trigger('complete', this);
     }
 });
 
-OfficeLocationApp.Views.ReportView = Backbone.View.extend({
+OfficeLocationApp.Views.FinalReportView = Backbone.View.extend({
     initialize: function(options) {
         _.bindAll(this, 'render');
     },
     render: function() {
+        this.$el.html('Final Report View');
+        this.$el.show();
+        this.trigger('complete', this);
     }
 });
 

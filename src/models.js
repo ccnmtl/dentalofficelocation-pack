@@ -317,3 +317,7 @@ var UserState = Backbone.Model.extend({
         return true;
     }
 });
+
+module.exports.ActorList = ActorList;
+module.exports.ActorQuestionList = ActorQuestionList;
+module.exports.MapLayerList = MapLayerList;

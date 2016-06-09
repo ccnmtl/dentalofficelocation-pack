@@ -12,7 +12,5 @@ var jQuery = require('jquery');
 var module = require('./officelocation.js');
 
 jQuery(document).ready(function() {
-    var view = new module.OfficeLocationApp({
-        el: '.office-location'
-    });
+    module.OfficeLocationApp.initialize();
 });
