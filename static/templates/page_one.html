@@ -1,0 +1,113 @@
+<div class="career_location page-1" style="display: none">
+    <div class="career_location_overlay" style="display: none"></div>
+
+    <div class="profile" style="display: none"></div>
+
+    <div class="toolbar">
+        <a class="btn right" href="#" id="toggle_help" data-toggle="help_text" role="button"><i class="icon-question-sign"></i> Help</a>
+        <a class="btn right" href="#" id="toggle_notepad"><i class="icon-th-list"></i> Notepad</a>
+    </div>
+    <div class="visualclear"></div>
+
+    <div class="help_content popover-parent" style="display: none">
+        <a class="btn right" href="#" id="toggle_help" data-toggle="help_text" role="button"><i class="icon-question-sign"></i> Help</a>
+        <h3 class="popover-title">Help</h3>
+        <div class="popover-content">
+            <h4>How to Interview Stakeholders</h4>
+             <ol>
+                <li> Click on stakeholder images within the map.</li>
+                <li> Read the stakeholder profiles.</li>
+                <li> Select 4 stakeholders to interview.</li>
+                <li> Ask each stakeholder 3 questions.</li>
+                <li> Take notes!</li>
+            </ol>
+            <h4>How to Use the Map</h4>
+            <ol>
+                <li> Click "Map Layers" to display additional information.</li>
+                <li> Check the boxes next to each layer to turn it on or off.</li>
+                <li> Use this information to help form your conclusion.</li>
+            </ol>
+            <div class="popover-close"><a class="btn" href="#">Close</a></div>
+        </div>
+    </div>
+
+    <div class="map_layer_content popover-parent" style="display: none">
+        <a class="btn right" href="#" id="toggle_map_layers"><i class="icon-picture"></i> Map Layers</a>
+        <h3 class="popover-title">Select Map Layers</h3>
+        <div class="popover-content">
+            {% for layer in block.layers %}
+                <div>
+                    <input type="checkbox" class="select-layer" data-id="{{layer.id}}" id="select_layer_{{layer.id}}" value="{{layer.name}}"></input>
+                    {{ layer.display_name }}
+                </div>
+            {% endfor %}
+            <div class="popover-close"><a class="btn" href="#">Close</a></div>
+        </div>
+    </div>
+
+    <div class="notepad_content popover-parent" style="display: none">
+        <a class="btn right" href="#" id="toggle_notepad"><i class="icon-th-list"></i> Notepad</a>
+        <h3 class="popover-title">Notepad</h3>
+        <div class="popover-content">
+            <textarea class="notepad scrollable"></textarea>
+            <div class="popover-close"><a class="btn notepad" href="#">Close</a></div>
+        </div>
+    </div>
+
+    <div class="basic_instructions well left alert-info">
+        Click on stakeholders to view their profiles. You only have time to interview 4 of them, and ask 3 questions each. Turn on "Map Layers" to help gather information.
+    </div>
+
+    <div class="unlock_instructions well left alert-success" style="display: none">
+        <b>Great work!</b> You've completed your interviews.<br />Click the "Select Practice Location" link to continue.
+    </div>
+
+    <div class="interview_state">
+        {%  for x in block.max_stakeholders %}
+            <div class="actor_state left empty"><h1>{{ forloop.counter }}</h1></div>
+        {%  endfor %}
+    </div>
+    <div class="visualclear"></div>
+
+    <div class="career_location_map_container">
+        <div class="career_location_map">
+            {%  for actor in block.stakeholders.all %}
+                <div id="actor_map_{{actor.id}}" class="actor_container" style="left: {{actor.left}}px; top: {{actor.top}}px">
+                <img data-id="{{actor.id}}"
+                     class="actor"
+                     src="{{actor.image.url}}"
+                     alt="interview stakeholder"></img>
+                    <div class="question_state"></div>
+                </div>
+            {%  endfor %}
+
+            <img class="career_location_base_layer" src="{{block.base_layer.image.url}}" alt="career location base map" />
+            {% for layer in block.layers %}
+                <img id="map_layer_{{layer.id}}"
+                     data-id="{{layer.id}}"
+                     class="career_location_map_layer"
+                     src="{{layer.image.url}}"
+                     alt="career location base map"
+                     style="display: none; z-index: {{layer.z_index}}; opacity:0.{{layer.transparency}}; -moz-opacity:0.{{layer.transparency}}; filter:alpha(opacity={{layer.transparency}});"></img>
+            {% endfor %}
+        </div>
+        <div class="visualclear"></div>
+        <div class="map_legend_container">
+            <h3>Map Legends</h3>
+        <div id="base_map_layer">{{block.base_layer.legend|safe}}</div>
+
+            {% for layer in block.layers %}
+                <div id="map_legend_{{layer.id}}"
+                     data-id="{{layer.id}}"
+                     class="map_legend left"
+                     style="display: none">
+                    <h5>{{layer.display_name}}</h5>
+                    {{layer.legend|safe}}
+                </div>
+            {% endfor %}
+            <div class="visualclear"></div>
+        </div>
+    </div>
+</div>
+
+<div class="visualclear"></div>
