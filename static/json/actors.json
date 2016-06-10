@@ -1,0 +1,119 @@
+[
+{
+    "profile": "Originally from Chicago, Harold Jones has been working as a social worker at the AHC for almost a year. Previously Mr. Jones was a youth counselor helping at an alternative school before going back for his Masters in Social Work 3 years ago. ",
+    "name": "Harold Jones",
+    "title": "Social Worker",
+    "top": 25,
+    "questions": [
+        7,
+        9,
+        30,
+        29,
+        8
+    ],
+    "image": "../static/img/interviews/bgperson_13.png",
+    "left": 375,
+    "id": 1
+},
+{
+    "profile": "Dr. Kim Howard is a professor of Sociology at Cromwell University. Dr. Howard has taught at Cromwell for the last 15 years and lectures on social deviance and human behavior.  Dr Howard has recently become involved in a local faith-based community initiative with local churches to stop domestic violence.\r\n\r\n<br />\r\n<br />\r\n<b>You call his department and are informed, \"I'm so sorry. Dr Howard suffered a heart attack and had emergency bypass surgery 2 days ago.  I'm afraid he's not in any condition to have guests.\"</b>",
+    "name": "Dr. Kim Howard",
+    "title": "Professor at Cromwell University",
+    "top": 50,
+    "questions": [],
+    "image": "../static/img/interviews/bgperson_12.png",
+    "left": 50,
+    "id": 2
+},
+{
+    "profile": "Dr. Fuller is a general dentist in private practice that has served the community for the last 17 years. He completed his dental school training and GPR in North Oralington. While he sees mostly adults, Dr. Fuller has a family practice and sees children and teens regularly. Dr. Fuller recently stopped taking Medicaid at this practice, but he has volunteered to provide dental screenings at the annual community block fairs for the last 5 years.",
+    "name": "Dr. Thomas Fuller",
+    "title": "Private dentist in community",
+    "top": 280,
+    "questions": [
+        26,
+        10,
+        12,
+        11,
+        25
+    ],
+    "image": "../static/img/interviews/bgperson_10.png",
+    "left": 570,
+    "id": 3
+},
+{
+    "profile": "William Butterfield has been principal at East Ridge High School for the last 2 years. Before he served as the vice principal for 5 years, he helped the \"Mighty Rhinos\" improve their state test scores from the 28th percentile to the 61st percentile - this has been attributed to the after school program he started which incorporates tutoring, sports, and social clubs such as dance, theatre, and the arts. Despite these efforts, only 47% of East Ridge students graduate. East Ridge High also has the second highest minority student population in the county with 27% of students being of Latino/Hispanic descent.",
+    "name": "William Butterfield",
+    "title": "High School Principal",
+    "top": 185,
+    "questions": [
+        32,
+        31,
+        14,
+        13,
+        15
+    ],
+    "image": "../static/img/interviews/bgperson_09.png",
+    "left": 525,
+    "id": 4
+},
+{
+    "profile": "Dr. Mina Shaw is a pediatric dentist in private practice. She is a new provider to the area but currently operates two dental practices in the county. Dr. Shaw is also part-time faculty at the dental school and vice president of the Duane County Dental Society.\r\n\r\n<br />\r\n<br />\r\n<b>You try to call Dr Shaw's office but are told that she is out on vacation and will not return until the end of the month.</b>",
+    "name": "Dr. Mina Shaw",
+    "title": "Local Pediatric Dentist in Community",
+    "top": 290,
+    "questions": [],
+    "image": "../static/img/interviews/bgperson_07.png",
+
+    "left": 350,
+    "id": 5
+},
+{
+    "profile": "Dr. Sybill Torres is a board certified pediatrician and an additional fellowship focused on adolescent health. She has served at the AHC for the last 22 years. She was one of the first physicians at the AHC and grew up only a few blocks from the center. ",
+    "name": "Dr. Sybill Torres",
+    "title": "Community Clinic Medical Director",
+    "top": 270,
+    "questions": [
+        17,
+        27,
+        18,
+        28,
+        16
+    ],
+    "image": "../static/img/interviews/bgperson_06.png",
+    "left": 185,
+    "id": 6
+},
+{
+    "profile": "Ms. Lori Thompson has lived in the neighborhood her whole life. She is married and has three daughters ( 9, 12, and 14) who live with her. Ms. Thompson works part time at the local grocery store, is active in the local church, and organized the park clean up last summer.",
+    "name": "Ms. Lori Thompson",
+    "title": "Local Mother",
+    "top": 215,
+    "questions": [
+        33,
+        19,
+        34,
+        21,
+        20
+    ],
+    "image": "../static/img/interviews/bgperson_04.png",
+    "left": 155,
+    "id": 7
+},
+{
+    "profile": "Rosie Walker is a volunteer coach at East Ridge High and started an afterschool volleyball program. Students are required to maintain a minimum 3.0 GPA in order to stay active on the team and she receives donations for them to participate in local tournaments around the state. Ms. Walker also operates a local mini-mart with her husband.",
+    "name": "Rosie Walker",
+    "title": "Local business owner and volunteer coach",
+    "top": 154,
+    "questions": [
+        35,
+        24,
+        22,
+        36,
+        23
+    ],
+    "image": "../static/img/interviews/bgperson_01.png",
+    "left": 20,
+    "id": 8
+}
+]

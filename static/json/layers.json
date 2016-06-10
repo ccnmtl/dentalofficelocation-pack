@@ -1,0 +1,48 @@
+[
+{
+    "visible": true,
+    "z_index": 999,
+    "name": "base",
+    "image": "../static/img/layers/map_base.png",
+    "transparency": 99,
+    "display_name": "Base Map Layer",
+    "legend": "<div class=\"map_legend clearfix\">\r\n    <div class=\"key-item clearfix\">\r\n        <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_road.png\" /></div>\r\n        <div class=\"key-text\">Road</div>\r\n    </div>\r\n    <div class=\"key-item clearfix\">\r\n        <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_highway.png\" /></div>\r\n        <div class=\"key-text\">Highway</div>\r\n    </div>\r\n    <div class=\"key-item clearfix\">\r\n        <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_bus.png\" /></div>\r\n        <div class=\"key-text\">Public bus route</div>\r\n    </div>\r\n</div>",
+    "id": 1
+},
+{
+    "z_index": 999,
+    "name": "schools",
+    "image": "../static/img/layers/map_schools.png",
+    "transparency": 99,
+    "display_name": "Schools",
+    "legend": "<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_uni.png\" /></div>\r\n    <div class=\"key-text\">College/University</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_middle_school.png\" /></div>\r\n    <div class=\"key-text\">Middle school</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_high_school.png\" /></div>\r\n    <div class=\"key-text\">High school</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_after_school.png\" /></div>\r\n    <div class=\"key-text\">After school program</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_clinic.png\" /></div>\r\n    <div class=\"key-text\">School clinic program</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_pediatrician.png\" /></div>\r\n    <div class=\"key-text\">Pediatrician office</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_community.png\" /></div>\r\n    <div class=\"key-text\">Community center</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_park.png\" /></div>\r\n    <div class=\"key-text\">Park</div>\r\n</div>",
+    "id": 2
+},
+{
+    "z_index": 997,
+    "name": "population",
+    "image": "../static/img/layers/map_population.png",
+    "transparency": 50,
+    "display_name": "Ratio of adolescent to general population",
+    "legend": "<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_pop_01.png\" /></div>\r\n    <div class=\"key-text\">&lt; 5 per 1000 individuals</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_pop_02.png\" /></div>\r\n    <div class=\"key-text\">5-10 /1000 individuals</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_pop_03.png\" /></div>\r\n    <div class=\"key-text\">&gt;10 / 1,000 individuals</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-text\"><b>Total Population:</b> 1,820,984\r\n                                        <br /><b>Duane County pop.:</b> 128,000\r\n                                        <br /><b>Average neighborhood pop.:</b> 2,909\r\n                                        <br />Average 23% population in zipcode 10023 is b/w 10-24 y/o</div>\r\n</div>",
+    "id": 3
+},
+{
+    "z_index": 996,
+    "name": "income",
+    "image": "../static/img/layers/map_income.png",
+    "transparency": 80,
+    "display_name": "Income",
+    "legend": "<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_income_01.png\" /></div>\r\n    <div class=\"key-text\">Average Household income<br />=&gt; 100% Federal Poverty Line</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_income_02.png\" /></div>\r\n    <div class=\"key-text\">Average Household income<br />= 100-250% Federal Poverty Line</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_income_03.png\" /></div>\r\n    <div class=\"key-text\">Average Household income<br />&lt; 250% Federal Poverty Line</div>\r\n</div>",
+    "id": 4
+},
+{
+    "z_index": 999,
+    "name": "dentists",
+    "image": "../static/img/layers/map_dental.png",
+    "transparency": 99,
+    "display_name": "Dentists",
+    "legend": "<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_dental_all.png\" /></div>\r\n    <div class=\"key-text\">Dental office</div>\r\n</div>\r\n<div class=\"key-item clearfix\">\r\n    <div class=\"key-icon\"><img src=\"https://s3.amazonaws.com/ccnmtl-pass-static-prod/media/img/key_dental_medicaid.png\" /></div>\r\n    <div class=\"key-text\">Dental office accepting Medicaid</div>\r\n</div>",
+    "id": 5
+}
+]
