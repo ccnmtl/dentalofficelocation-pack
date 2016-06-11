@@ -1,4 +1,4 @@
-<div class="page-1 spacer">
+<div class="page-2 spacer">
     <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -16,14 +16,14 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h4>Interview Stakeholders</h4>
+            <h4>Select a Practice Location</h4>
         </div>
         <div class="col-md-offset-3 col-md-3">
-            <a class="btn btn-default pull-right" href="#" data-target="#help-modal" data-toggle="modal" role="button">
+            <a class="btn btn-default pull-right" href="#" data-target="#help-modal-2" data-toggle="modal" role="button">
                 <span class="glyphicon glyphicon-question-sign"></span> Help</a>
             </a>
 
-            <div class="modal fade" id="help-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <div class="modal fade" id="help-modal-2" tabindex="-1" role="dialog" aria-labelledby="Help">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -31,19 +31,15 @@
                     <h4 class="modal-title">Help</h4>
                   </div>
                   <div class="modal-body">
-                        <h4>How to Interview Stakeholders</h4>
-                         <ol>
-                            <li> Click on stakeholder images within the map.</li>
-                            <li> Read the stakeholder profiles.</li>
-                            <li> Select 4 stakeholders to interview.</li>
-                            <li> Ask each stakeholder 3 questions.</li>
-                            <li> Take notes!</li>
-                        </ol>
-                        <h4>How to Use the Map</h4>
+                        <h4>How to Select a Practice Location</h4>
                         <ol>
-                            <li> Click "Map Layers" to display additional information.</li>
-                            <li> Check the boxes next to each layer to turn it on or off.</li>
-                            <li> Use this information to help form your conclusion.</li>
+                            <li> Move your mouse over the map.</li>
+                            <li> You will see a red star as you highlight individual cells.</li>
+                            <li> Click the Map Layers button to turn on/off map information.</li>
+                            <li> Use your notes to help make a decision.</li>
+                            <li> When you're ready, click on a cell to select your practice location.</li>
+                            <li> Change the location by clicking on other cells.</li>
+                            <li> Continue on by clicking the "Complete Board Application" link.</li>
                         </ol>
                   </div>
                   <div class="modal-footer">
@@ -53,16 +49,16 @@
               </div>
             </div>
 
-            <a class="btn btn-default pull-right"  data-target="#notepad-modal" data-toggle="modal" role="button">
+            <a class="btn btn-default pull-right"  data-target="#notepad-modal-2" data-toggle="modal" role="button">
                 <span class="glyphicon glyphicon-th-list"></span> Notepad
             </a>
 
-            <div class="modal fade" id="notepad-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <div class="modal fade" id="notepad-modal-2" tabindex="-1" role="dialog" aria-labelledby="Help">
               <div class="modal-dialog modal-sm" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Notepad</h4>
+                    <h4 class="modal-title" id="myModalLabel">Notepad</h4>
                   </div>
                   <div class="modal-body well">
                     <p>Use the notepad to record thoughts and questions as you complete the activity.</p>
@@ -75,16 +71,16 @@
               </div>
             </div> 
 
-            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-layers-modal">
+            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-layers-modal-2">
                 <span class="glyphicon glyphicon-picture"></span> Map Layers
             </a>
 
-            <div class="modal fade" id="map-layers-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+            <div class="modal fade" id="map-layers-modal-2" tabindex="-1" role="dialog" aria-labelledby="Help">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Select Map Layers</h4>
+                    <h4 class="modal-title" id="myModalLabel">Select Map Layers</h4>
                   </div>
                   <div class="modal-body">
                         <% for (var i=1; i < layers.length; i++) { %>
@@ -109,12 +105,14 @@
             <% if (complete) { %>
                 <div class="alert alert-success">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    <b>Great work!</b> You've completed your interviews.<br />Click the "Select Practice Location" link to continue.
+                    <b>Excellent!</b> You've selected a site recommendation for your oral health program.
+                    Continue on to complete your board application.
                 </div>
             <% } else { %>
                 <div class="alert alert-info">
                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                    Click on stakeholders to view their profiles. You only have time to interview 4 of them, and ask 3 questions each. Turn on "Map Layers" to help gather information.
+                    Please make your site recommendation for your oral health program.<br />
+                    Move your mouse over the map, then click to select a site.
                 </div>
             <% } %>
         </div>
@@ -130,16 +128,27 @@
     <div class="row map-container spacer">
         <div class="col-md-12 text-center">
             <div class="map-layers">
+                <div class="map-layer">
+                    <table>
+                        <% for (var i = 0; i < 8; i++) { %>
+                            <tr>
+                            <% for (var j = 0; j < 15; j++) { %>
+                                <td <% if (i == row && j == col) { %>class="selected"<% } %>></td>
+                            <% } %>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
                 <img src="<%=layers[0].image%>" alt="career location base map" />
-                <% for (var i=1; i < layers.length; i++) { %>
+                <% for (var i = 1; i < layers.length; i++) { %>
                     <% var layer = layers[i]; %>
                     <img data-id="<%=layer.id%>"
                          class="map_layer_<%=layer.id%> map-layer"
                          src="<%=layer.image%>"
                          alt="career location base map"
-                         style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
+                         style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);" />
                 <% } %>
-                <% for (var i=0; i < actors.length; i++) { %>
+                <% for (var i = 0; i < actors.length; i++) { %>
                     <% var actor = actors[i]; %>
                     <div class="actor_map_<%=actor.id%> actor-container" style="left: <%=actor.left%>px; top: <%=actor.top%>px">
                     <img data-id="<%=actor.id%>"
