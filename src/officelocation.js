@@ -34,7 +34,8 @@ var OfficeLocationApp = {
         $parent.append(page);
         var view = new OfficeLocationApp.Views.InterviewView({
             el: page,
-            layers: layers
+            layers: layers,
+            noteView: this.inst.noteView
         });
         views.push(view);
 
@@ -124,34 +125,138 @@ OfficeLocationApp.Views.MapView = Backbone.View.extend({
 });
 
 OfficeLocationApp.Views.InterviewView = Backbone.View.extend({
+    events: {
+        'click img.actor': 'onShowProfile',
+        'hidden.bs.modal #profile-modal': 'onHideProfile',
+        'click button.interview': 'onInterview',
+        'shown.bs.collapse .collapse': 'onAskQuestion',
+        'click .btn-close-question': 'onCloseQuestion',
+        'hidden.bs.collapse': 'renderProfile'
+    },
     initialize: function(options) {
-        _.bindAll(this, 'render');
+        _.bindAll(this, 'render', 'renderProfile', 'renderActors',
+            'onShowProfile', 'onHideProfile', 'onInterview',
+            'onAskQuestion', 'onCloseQuestion');
+
+        this.complete = false;
+        this.layers = options.layers;
+        this.noteView = options.noteView;
 
         var actors = require('../static/json/actors.json');
         this.actors = new OfficeLocationApp.Models.ActorList(actors);
+        var self = this;
+        for (var i = 0; i < this.actors.length; i++) {
+            var actor = this.actors.at(i);
+            actor.bind('change:interviewed', self.renderProfile);
 
-        var questions = require('../static/json/questions.json');
-        this.questions =
-            new OfficeLocationApp.Models.ActorQuestionList(questions);
-
-        this.layers = options.layers;
+            var questions = actor.get('questions');
+            for (var j = 0; j < questions.length; j++) {
+                questions.at(j).bind('change:asked', self.renderProfile);
+            }
+        }
 
         this.template =
             require('../static/templates/page_one.html');
-
-        this.profile_template =
+        this.profileTemplate =
             require('../static/templates/profile_template.html');
-        this.actor_state_template =
+        this.actorStateTemplate =
             require('../static/templates/actor_state_template.html');
-        this.actor_map_template =
+        this.actorMapTemplate =
             require('../static/templates/actor_map_template.html');
     },
     render: function() {
         var markup = this.template({
-            actors: this.actors.toTemplate(),
-            layers: this.layers.toTemplate()});
+            actors: this.actors.toTemplate(this.questions),
+            layers: this.layers.toTemplate(),
+            complete: this.complete});
         this.$el.html(markup);
         this.$el.show();
+
+        this.renderActors();
+    },
+    renderActors: function() {
+        for (var i = 0; i < this.actors.length; i++) {
+            var actor = this.actors.at(i);
+            if (!actor.get('interviewed')) {
+                continue;
+            }
+            var $slot = jQuery('#actor_state_' + actor.get('id')).first();
+            if ($slot.length < 1) {
+                $slot = this.$el.find('.actor-state.empty').last();
+            }
+
+            if ($slot.length > 0) {
+                var markup = this.actorStateTemplate(actor.toTemplate());
+                jQuery($slot).replaceWith(markup);
+
+                // update the actor state div within the map
+                markup = this.actorMapTemplate(actor.toTemplate());
+                jQuery('#actor_map_' + actor.get('id')).html(markup);
+            }
+        }
+    },
+    renderProfile: function() {
+        var json = this.currentActor.toTemplate();
+        json.interviewCount = this.actors.interviewCount();
+        if (this.currentQuestion) {
+            json.currentQuestion = this.currentQuestion.toTemplate();
+        } else {
+            json.currentQuestion = null;
+        }
+
+        var markup = this.profileTemplate(json);
+        var $modal = this.$el.find('#profile-modal');
+        $modal.find('.modal-body').html(markup);
+        $modal.find('.panel-group').collapse({toggle: false});
+
+        this.renderActors();
+        this.noteView.render();
+        this.noteView.delegateEvents();
+    },
+    onShowProfile: function(evt) {
+        var srcElement = evt.srcElement || evt.target || evt.originalTarget;
+        var actorId = jQuery(srcElement).data('id');
+        this.currentActor = this.actors.get(actorId);
+
+        this.renderProfile();
+
+        var $modal = this.$el.find('#profile-modal');
+        $modal.modal({});
+    },
+    onHideProfile: function(evt) {
+        this.currentActor = undefined;
+        this.noteView.render();
+
+        this.maybeComplete();
+    },
+    onInterview: function(evt) {
+        this.currentActor.set('interviewed', true);
+        this.currentActor.save();
+    },
+    onAskQuestion: function(evt) {
+        var qId = jQuery(evt.target).data('id');
+        var question = this.currentActor.get('questions').get(qId);
+        this.currentQuestion = question;
+        question.set('asked', true);
+    },
+    onCloseQuestion: function(evt) {
+        this.currentQuestion = undefined;
+        jQuery(evt.target).parents('.collapse').collapse('hide');
+    },
+    maybeComplete: function() {
+        if (!this.complete) {
+            var complete = 0;
+            for (var i = 0; i < this.actors.length; i++) {
+                var actor = this.actors.at(i);
+                if (actor.asked() === 3) {
+                    complete++;
+                }
+            }
+            if (complete === 4) {
+                this.complete = true;
+                this.trigger('complete', this);
+            }
+        }
     }
 });
 

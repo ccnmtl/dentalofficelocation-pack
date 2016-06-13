@@ -1,6 +1,18 @@
 <div class="page-1 spacer">
-    <div class="career_location_overlay" style="display: none"></div>
-    <div class="profile" style="display: none"></div>
+    <div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Interview Stakeholder</h4>
+         </div>
+          <div class="modal-body profile"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
         <div class="col-md-6">
@@ -52,7 +64,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Notepad</h4>
                   </div>
-                  <div class="modal-body">
+                  <div class="modal-body well">
+                    <p>Use the notepad to record thoughts and questions as you complete the activity.</p>
                     <textarea class="notepad scrollable"></textarea>
                   </div>
                   <div class="modal-footer">
@@ -93,17 +106,20 @@
 
     <div class="row spacer">
         <div class="col-md-6">
-            <div class="interactive-instructions">
-                Click on stakeholders to view their profiles. You only have time to interview 4 of them, and ask 3 questions each. Turn on "Map Layers" to help gather information.
-            </div>
-            <div class="unlock-instructions" style="display: none">
-                <b>Great work!</b> You've completed your interviews.<br />Click the "Select Practice Location" link to continue.
-            </div>
+            <% if (complete) { %>
+                <div class="unlock-instructions">
+                    <b>Great work!</b> You've completed your interviews.<br />Click the "Select Practice Location" link to continue.
+                </div>
+            <% } else { %>
+                <div class="interactive-instructions">
+                    Click on stakeholders to view their profiles. You only have time to interview 4 of them, and ask 3 questions each. Turn on "Map Layers" to help gather information.
+                </div>
+            <% } %>
         </div>
         <div class="col-md-6">
             <div class="interview_state">
                 <% for (var i=4; i >= 1; i--) { %>
-                    <div class="actor_state pull-right empty"><h1><%= i %></h1></div>
+                    <div class="actor-state pull-right empty"><h1><%= i %></h1></div>
                 <% } %>
             </div>
         </div>
@@ -111,34 +127,33 @@
 
     <div class="row map-container spacer">
         <div class="col-md-12 text-center">
-                <div class="map-layers">
-                    <img src="<%=layers[0].image%>" alt="career location base map" />
-                    <% for (var i=1; i < layers.length; i++) { %>
-                        <% var layer = layers[i]; %>
-                        <img id="map_layer_<%=layer.id%>"
-                             data-id="<%=layer.id%>"
-                             class="map-layer"
-                             src="<%=layer.image%>"
-                             alt="career location base map"
-                             style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
-                    <% } %>
-                    <% for (var i=0; i < actors.length; i++) { %>
-                        <% var actor = actors[i]; %>
-                        <div id="actor_map_<%=actor.id%>" class="actor_container" style="left: <%=actor.left%>px; top: <%=actor.top%>px">
-                        <img data-id="<%=actor.id%>"
-                             class="actor"
-                             src="<%=actor.image%>"
-                             alt="interview stakeholder"></img>
-                            <div class="question_state"></div>
-                        </div>
-                    <% } %>
-                </div>
+            <div class="map-layers">
+                <img src="<%=layers[0].image%>" alt="career location base map" />
+                <% for (var i=1; i < layers.length; i++) { %>
+                    <% var layer = layers[i]; %>
+                    <img id="map_layer_<%=layer.id%>"
+                         data-id="<%=layer.id%>"
+                         class="map-layer"
+                         src="<%=layer.image%>"
+                         alt="career location base map"
+                         style="display: none; z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);"></img>
+                <% } %>
+                <% for (var i=0; i < actors.length; i++) { %>
+                    <% var actor = actors[i]; %>
+                    <div id="actor_map_<%=actor.id%>" class="actor_container" style="left: <%=actor.left%>px; top: <%=actor.top%>px">
+                    <img data-id="<%=actor.id%>"
+                         class="actor"
+                         src="<%=actor.image%>"
+                         alt="interview stakeholder"></img>
+                        <div class="question_state"></div>
+                    </div>
+                <% } %>
             </div>
         </div>
     </div>
 
     <div class="row spacer">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <h4>Map Legends</h4>
             <div id="base_map_layer"><%= layers[0].legend %></div>
         </div>
@@ -146,7 +161,7 @@
 
     <div class="row spacer">
         <% for (var i=1; i < layers.length; i++) { %>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <% var layer = layers[i]; %>
                 <div id="map_legend_<%=layer.id%>"
                      data-id="<%=layer.id%>"

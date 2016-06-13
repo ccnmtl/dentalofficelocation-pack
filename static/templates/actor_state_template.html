@@ -1,6 +1,6 @@
-<div class="actor_state left <%= state %>" id="actor_state_<%= id %>">
+<div class="actor-state pull-right" id="actor_state_<%= id %>">
     <img src="<%= image %>" data-id="<%= id %>"></img>
-    <div class="question_state">
+    <div class="question-state">
         <% for (var i=0; i < 3; i++, asked--) { %><% if (asked > 0) { %><span class="asked">&bull;</span><% } else { %><span>&bull;</span><% } %><% } %>
     </div>
 </div>
