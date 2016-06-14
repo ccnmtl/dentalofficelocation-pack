@@ -1,5 +1,5 @@
-<div class="actor-state pull-right" id="actor_state_<%= id %>">
-    <img src="<%= image %>" data-id="<%= id %>"></img>
+<div class="actor-state pull-right actor_state_<%= id %>">
+    <img class="actor" src="<%= image %>" data-id="<%= id %>"></img>
     <div class="question-state">
         <% for (var i=0; i < 3; i++, asked--) { %><% if (asked > 0) { %><span class="asked">&bull;</span><% } else { %><span>&bull;</span><% } %><% } %>
     </div>

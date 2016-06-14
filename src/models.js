@@ -8,11 +8,6 @@ var STAKEHOLDER_LIMIT = 4;
 var QUESTION_LIMIT = 3;
 var BOARDMEMBER_LIMIT = 6;
 
-Backbone.sync = function() {
-    // do nothing;
-    return false;
-};
-
 var User = Backbone.Model.extend({
     defaults: {
     }

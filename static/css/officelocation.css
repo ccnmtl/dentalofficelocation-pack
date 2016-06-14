@@ -2,11 +2,7 @@
     margin-top: 10px;
 }
 
-.actor_container:hover {
-    margin: 2px;
-}
-
-img.actor {
+.page-1 img.actor {
     cursor: pointer;
 }
 
@@ -62,9 +58,64 @@ a.btn.btn-default {
     margin-right: auto;
 }
 
-.actor_container {
+.map-layers table {
+    width: 743px;
+    height: 400px;
+    margin-left: 2px;
+    z-index: 1001;
+}
+
+.map-layers table tr {
+    height: 50px;
+    z-index: 1001;
+    padding: 0;
+    margin: 0;
+}
+
+.map-layers table tr td {
+    width: 53px;
+    z-index: 1001;
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    line-height: 1em;
+    opacity: 0;
+    border: 1px solid #339999;
+    border-collapse: collapse;
+}
+
+.map-layers table tr td.hovered {
+    background-color: #c9c9c9;
+    opacity: .70;
+    -moz-opacity:0.70;
+    filter: Alpha(Opacity=70);
+    cursor: pointer;
+    background-image: url('../img/practice_building.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 1002;
+    color: #d1d0cf;
+}
+
+.map-layers table tr td.selected {
+    background-image: url('../img/practice_building.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 1002;
+    opacity: 1.0;
+    -moz-opacity: 1.0;
+    filter: -;
+    color: #e5e2df;
+}
+
+
+.actor-container {
     position: absolute;
     z-index: 1000;
+}
+
+.page-1 .actor-container:hover {
+    margin: 2px;
 }
 
 /** Map Legends **/
@@ -183,6 +234,17 @@ a.btn.btn-default {
 .question-state span.asked {
     color: #ff6600;
 }
+
+.actor-container .question-state,
+.actor-state .question-state {
+    margin-left: 10px;
+}
+
+.actor-container .question-state span, 
+.actor-state .question-state span {
+    margin-right: 3px;
+} 
+
 .panel-heading .question {
     width: 80%;
 }
