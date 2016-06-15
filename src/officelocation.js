@@ -214,7 +214,7 @@ var InterviewView = BaseView.extend({
 var PickLocationView = BaseView.extend({
     events: {
         'click .select-layer': 'onSelectLayer',
-        'click img.actor': 'onShowProfile',
+        'click .interview-state img.actor': 'onShowProfile',
         'hidden.bs.modal #profile-modal': 'onHideProfile',
         'click .btn-close-question': 'onCloseQuestion',
         'hidden.bs.collapse': 'renderProfile',
@@ -234,18 +234,18 @@ var PickLocationView = BaseView.extend({
         this.initializeActors(options.actors);
         this.initializeNotes(options.noteView);
 
+        this.location = options.location;
+        this.location.bind('change', this.render);
+
         this.template = require('../static/templates/page_two.html');
     },
     render: function() {
-        this.$el.html('Pick Location');
-        this.$el.show();
-
         var markup = this.template({
             actors: this.actors.toTemplate(),
             layers: this.layers.toTemplate(),
             complete: this.complete,
-            row: this.rowIndex,
-            col: this.colIndex});
+            row: this.location.get('rowIndex'),
+            col: this.location.get('colIndex')});
 
         this.$el.html(markup);
         this.$el.show();
@@ -253,6 +253,8 @@ var PickLocationView = BaseView.extend({
         this.renderMap();
         this.renderActors();
         this.noteView.render();
+
+        this.maybeComplete();
     },
     onMouseOver: function(evt) {
         jQuery(evt.target).addClass('hovered');
@@ -264,13 +266,11 @@ var PickLocationView = BaseView.extend({
         var rowIndex = jQuery(evt.target).parent().index('tr');
         var colIndex = jQuery(evt.target).index('tr:eq(' + rowIndex + ') td');
 
-        this.rowIndex = rowIndex;
-        this.colIndex = colIndex;
-        this.maybeComplete();
-        this.render();
+        this.location.set({'rowIndex': rowIndex, 'colIndex': colIndex});
     },
     maybeComplete: function() {
-        if (this.rowIndex && this.colIndex) {
+        if (this.location.get('rowIndex') !== null &&
+                this.location.get('colIndex') !== null) {
             this.complete = true;
             this.trigger('complete', this);
         }
@@ -278,16 +278,88 @@ var PickLocationView = BaseView.extend({
 });
 
 var BoardView = Backbone.View.extend({
+    events: {
+        'keyup .boardmember-question textarea': 'onChangeAnswer',
+        'click .btn-answer-question': 'onSubmitAnswer'
+    },
     initialize: function(options) {
-        _.bindAll(this, 'render');
+        _.bindAll(this, 'render', 'onChangeAnswer', 'onSubmitAnswer');
 
-        var actors = require('../static/json/boardmembers.json');
-        this.actors = new models.ActorList(actors);
+        this.complete = false;
+        this.layers = options.layers;
+        this.boardmembers = options.board;
+        this.actors = options.actors;
+        this.noteView = options.noteView;
+        this.location = options.location;
+
+        this.template = require('../static/templates/page_three.html');
+        this.currentIdx = 1;
+
+        var self = this;
+        for (var i = 0; i < this.boardmembers.length; i++) {
+            var actor = this.boardmembers.at(i);
+            actor.bind('change:reply', self.render);
+        }
+
+        this.profileTemplate =
+            require('../static/templates/profile_template.html');
     },
     render: function() {
-        this.$el.html('Board View');
+        var boardmembers = this.boardmembers.toTemplate();
+
+        var markup = this.template({
+            actors: this.actors.toTemplate(),
+            layers: this.layers.toTemplate(),
+            complete: this.complete,
+            boardmembers: boardmembers,
+            currentIdx: this.currentIdx,
+            row: this.location.get('rowIndex'),
+            col: this.location.get('colIndex')});
+
+        this.$el.html(markup);
         this.$el.show();
-        this.trigger('complete', this);
+
+        this.noteView.render();
+
+        this.maybeComplete();
+
+        var self = this;
+        setTimeout(function() {
+            var $parent = self.$el.find('.question-container');
+            var $elt = self.$el.find('.boardmember.selected');
+            if ($elt.length) {
+                var left = ($elt.offset().left - $parent.offset().left) +
+                    $elt.width() / 2 - 10;
+                self.$el.find('.boardmember-question b.notch')
+                    .css('left', left + 'px');
+
+                self.$el.find('.boardmember-question textarea').focus();
+            }
+        }, 100);
+    },
+    onChangeAnswer: function(evt) {
+        var $btn = this.$el.find('.btn-answer-question');
+        if (jQuery(evt.target).val().length > 0) {
+            $btn.removeClass('disabled');
+        } else {
+            $btn.addClass('disabled');
+        }
+    },
+    onSubmitAnswer: function(evt) {
+        var actor = this.boardmembers.get(jQuery(evt.target).data('id'));
+        this.$el.find('.boardmember-question textarea');
+        this.currentIdx++;
+        actor.set('reply',
+            this.$el.find('.boardmember-question textarea').val());
+    },
+    maybeComplete: function() {
+        if (this.currentIdx > this.boardmembers.length) {
+            var $elt = this.$el.find('.boardmember-question');
+            $elt.fadeOut(function() { $elt.html(''); });
+
+            this.complete = true;
+            this.trigger('complete', this);
+        }
     }
 });
 
@@ -303,6 +375,25 @@ var FinalReportView = Backbone.View.extend({
 });
 
 var OfficeLocationApp = {
+    shuffle: function(array) {
+        var currentIndex = array.length;
+        var temporaryValue;
+        var randomIndex;
+        var selected = 1;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+        return array;
+    },
     initialize: function(options) {
         var $parent = jQuery('.office-location');
 
@@ -311,6 +402,11 @@ var OfficeLocationApp = {
 
         data = require('../static/json/actors.json');
         var actors = new models.ActorList(data);
+
+        data = require('../static/json/boardmembers.json');
+        var board = new models.ActorList(this.shuffle(data));
+
+        var location = new models.Location();
 
         var noteView = new NoteView({
             el: $parent
@@ -334,6 +430,7 @@ var OfficeLocationApp = {
         $parent.append(page);
         view = new PickLocationView({
             el: page,
+            location: location,
             layers: layers,
             actors: actors,
             noteView: noteView
@@ -344,14 +441,26 @@ var OfficeLocationApp = {
         page = jQuery('<div></div>');
         $parent.append(page);
         view = new BoardView({
-            el: page
+            el: page,
+            location: location,
+            layers: layers,
+            actors: actors,
+            board: board,
+            noteView: noteView
         });
         views.push(view);
 
         // Step 4
         page = jQuery('<div></div>');
         $parent.append(page);
-        view = new FinalReportView({el: page});
+        view = new FinalReportView({
+            el: page,
+            location: location,
+            layers: layers,
+            actors: actors,
+            board: board,
+            noteView: noteView
+        });
         views.push(view);
 
         this.steps = new NumberedStepsView({

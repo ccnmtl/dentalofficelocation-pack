@@ -1,0 +1,210 @@
+<div class="page-3 spacer">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Board of Director's Meeting</h4>
+        </div>
+        <div class="col-md-offset-3 col-md-3">
+            <a class="btn btn-default pull-right" href="#" data-target="#help-modal-3" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-question-sign"></span> Help</a>
+            </a>
+
+            <div class="modal fade" id="help-modal-3" tabindex="-1" role="dialog" aria-labelledby="Help">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Help</h4>
+                  </div>
+                  <div class="modal-body">
+                        <h4>How To Present at the Board of Director's Meeting</h4>
+                        <ol>
+                            <li> Each boardmember question will queue up automatically.</li>
+                            <li> Read the boardmembers' questions carefully.</li>
+                            <li> Answer to the best of your knowledge.</li>
+                            <li> Click the "Done" button only when you're finished answering. You cannot go back to change your response.</li>
+                            <li> When you've answer all the questions, click "Activity Summary" to continue.</li>
+                        </ol>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a class="btn btn-default pull-right"  data-target="#notepad-modal-3" data-toggle="modal" role="button">
+                <span class="glyphicon glyphicon-th-list"></span> Notepad
+            </a>
+
+            <div class="modal fade" id="notepad-modal-3" tabindex="-1" role="dialog" aria-labelledby="Help">
+              <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Notepad</h4>
+                  </div>
+                  <div class="modal-body well">
+                    <p>Use the notepad to record thoughts and questions as you complete the activity.</p>
+                    <textarea class="notepad scrollable"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div> 
+
+            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal">
+                <span class="glyphicon glyphicon-picture"></span> Map View
+            </a>
+
+            <div class="modal fade" id="map-view-modal" tabindex="-1" role="dialog" aria-labelledby="Help">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Map View</h4>
+                  </div>
+                  <div class="modal-body">
+                        <div class="row map-container spacer">
+                            <div class="col-md-12 text-center">
+                                <div class="map-layers">
+                                    <div class="map-layer">
+                                        <table>
+                                            <% for (var i = 0; i < 8; i++) { %>
+                                                <tr>
+                                                <% for (var j = 0; j < 15; j++) { %>
+                                                    <td <% if (i == row && j == col) { %>class="selected"<% } %>></td>
+                                                <% } %>
+                                                </tr>
+                                            <% } %>
+                                        </table>
+                                    </div>
+                                    <img src="<%=layers[0].image%>" alt="career location base map" />
+                                    <% for (var i = 1; i < layers.length; i++) { %>
+                                        <% var layer = layers[i]; %>
+                                        <% if (layer.visible) { %>
+                                            <img data-id="<%=layer.id%>"
+                                                 class="map_layer_<%=layer.id%> map-layer"
+                                                 src="<%=layer.image%>"
+                                                 alt="career location base map"
+                                                 style="z-index: <%=layer.z_index%>; opacity:0.<%=layer.transparency%>; -moz-opacity:0.<%=layer.transparency%>; filter:alpha(opacity=<%=layer.transparency%>);" />
+                                        <% } %>
+                                    <% } %>
+                                    <% for (var i = 0; i < actors.length; i++) { %>
+                                        <% var actor = actors[i]; %>
+                                        <div class="actor_map_<%=actor.id%> actor-container" style="left: <%=actor.left%>px; top: <%=actor.top%>px">
+                                        <img data-id="<%=actor.id%>"
+                                             class="actor"
+                                             src="<%=actor.image%>"
+                                             alt="interview stakeholder"></img>
+                                            <div class="question_state"></div>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row spacer">
+                            <div class="col-md-12 text-center">
+                                <div class="map-legend-container">
+                                    <div>
+                                        <h4>Map Legends</h4>
+                                        <div id="base_map_layer"><%= layers[0].legend %></div>
+                                    </div>
+                                    <% for (var i=1; i < layers.length; i++) { %>
+                                        <% var layer = layers[i]; %>
+                                            <% if (layer.visible) { %>
+                                            <div data-id="<%=layer.id%>"
+                                                 class="pull-left map_legend_<%=layer.id%> map_legend">
+                                                <h5><%=layer.display_name%></h5>
+                                                <%=layer.legend %>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </div>
+    </div>
+
+    <div class="row spacer">
+        <div class="col-md-6">
+            <% if (complete) { %>
+                <div class="alert alert-success">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                     <b>All set!</b> You've answered ALL the boardmembers' questions. Continue on to see how you did.
+                </div>
+            <% } else { %>
+                <div class="alert alert-info">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    Answer the boardmembers' questions, using your notes and map as reference.
+                    Click the "Done" button only when you're finished answering. You cannot go back to change your response.
+                </div>
+            <% } %>
+        </div>
+        <div class="col-md-6">
+        </div>
+    </div>
+
+    <div class="row spacer">
+        <div class="col-md-12 text-center">
+            <div class="boardmember-container">
+                <% for (var i = 0; i < boardmembers.length; i++) { %>
+                    <% var actor = boardmembers[i]; %>
+                    <div class="boardmember pull-left
+                        <% if (actor.reply.length > 0) { %>
+                            complete disabled 
+                        <% } else if (currentIdx !== actor.order) { %>
+                            disabled
+                        <% } else { %>
+                            selected
+                        <% } %>"
+                        data-sort="<%= actor.order %>" data-id="<%= actor.id %>">
+                        <img src="<%=actor.image %>" alt="interview boardmember"></img>
+                    </div>
+                <% } %>
+                <div class="clearfix"></div>
+            </div>
+            <div class="question-container">
+                <% for (var i = 0; i < boardmembers.length; i++) { %>
+                    <% var actor = boardmembers[i]; %>
+                    <% if (actor.reply.length < 1 && currentIdx === actor.order) { %>
+                        <div class="boardmember-question callout border-callout">
+                            <b class="border-notch notch"></b>
+                            <b class="notch"></b>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="dropcap">Q</div>
+                                </div>
+                                <div class="col-md-10">
+                                    <p><%= actor.question %></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="dropcap">A</div>
+                                </div>
+                                <div class="col-md-10">
+                                    <p>Answer the boardmember's question, then click Done to continue.</p>
+                                    <textarea></textarea>
+                                </div>
+                            </div>
+                            <div class="row spacer">
+                                <div class="col-md-offset-11 col-md-1">
+                                    <button data-id="<%=actor.id%>" type="button" class="btn btn-info btn-answer-question disabled pull-right">Done</button>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

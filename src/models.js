@@ -8,14 +8,16 @@ var STAKEHOLDER_LIMIT = 4;
 var QUESTION_LIMIT = 3;
 var BOARDMEMBER_LIMIT = 6;
 
-var User = Backbone.Model.extend({
-    defaults: {
-    }
-});
-
 var Notepad = Backbone.Model.extend({
     defaults: {
         notes: ''
+    }
+});
+
+var Location = Backbone.Model.extend({
+    defaults: {
+        rowIndex: null,
+        colIndex: null
     }
 });
 
@@ -78,7 +80,8 @@ var ActorQuestionList = Backbone.Collection.extend({
 
 var Actor = Backbone.Model.extend({
     defaults: {
-        interviewed: false
+        interviewed: false,
+        reply: ''
     },
     initialize: function(attributes) {
         if (attributes) {
@@ -100,6 +103,7 @@ var Actor = Backbone.Model.extend({
         var json = _.clone(this.attributes);
         json.questions = this.get('questions').toTemplate();
         json.asked = this.asked();
+        json.reply = this.get('reply');
         return json;
     }
 });
@@ -132,123 +136,7 @@ var ActorList = Backbone.Collection.extend({
     }
 });
 
-/**
-var UserState = Backbone.Model.extend({
-    defaults: {
-        layers: new MapLayerList(),
-        actors: new ActorList(),
-        responses: new ActorResponseList(),
-        notes: '',
-        strategies_viewed: new StrategyList(),
-        strategy_selected: new Strategy(),
-        strategy_responses: new ActorResponseList()
-    },
-    selectActor: function(actor) {
-        this.get('actors').add(actor);
-    },
-    isActorSelected: function(actor) {
-        var obj = this.get('actors').get(actor.get('id'));
-        return typeof obj !== 'undefined' && obj !== null;
-    },
-    viewStrategy: function(strategy) {
-        this.get('strategies_viewed').add(strategy);
-    },
-    isStrategyViewed: function(strategy) {
-        var obj = this.get(
-            'strategies_viewed').id(strategy.get('id'));
-        return typeof obj !== 'undefined' && obj !== null;
-    },
-    selectStrategy: function(strategy) {
-        this.set('strategy_selected', strategy);
-    },
-    getActorState: function(actor) {
-        if (!this.isActorSelected(actor)) {
-            return 'unselected';
-        }
-
-        var responses = this.get('responses').getResponsesByActor(actor);
-        if (responses.length >= QUESTION_LIMIT) {
-            return 'complete';
-        } else {
-            return 'inprogress';
-        }
-    },
-    isQuestionAnswered: function(actor, question) {
-        var answered = false;
-        this.get('responses').forEach(function(response) {
-            if (response.get('actor').get('id') === actor.get('id') &&
-                response.get('question').get('id') === question.get('id')) {
-                answered = true;
-            }
-        });
-        return answered;
-    },
-    getStrategyQuestionResponse: function(question) {
-        this.get('strategy_responses').forEach(function(response) {
-            if (response.get('question').get('id') === question.get('id')) {
-                return response;
-            }
-        });
-        return null;
-    },
-    unlock: function() {
-        var allResponses = this.get('responses');
-        var stakeholders = [];
-        var boardmembers = [];
-
-        this.get('actors').forEach(function(actor) {
-            var responses = allResponses.getResponsesByActor(actor);
-            if (actor.get('type') === 'IV' &&
-                    responses.length >= QUESTION_LIMIT) {
-                stakeholders.push(actor);
-            } else if (actor.get('type') === 'BD' && responses.length > 0) {
-                if (responses[0].get('long_response').length > 0) {
-                    boardmembers.push(actor);
-                }
-            }
-        });
-
-        if (stakeholders.length < STAKEHOLDER_LIMIT) {
-            return false;
-        }
-
-        if (this.get('view_type') === 'LC' ||
-            this.get('view_type') === 'BD') {
-            if (this.get('practice_location_row') === undefined ||
-                this.get('practice_location_row') === null ||
-                this.get('practice_location_column') === undefined ||
-                this.get('practice_location_column') === null) {
-                return false;
-            }
-        }
-
-        if (this.get('view_type') === 'BD' &&
-                boardmembers.length < BOARDMEMBER_LIMIT) {
-            return false;
-        }
-
-        return true;
-    },
-    unlockStrategy: function(strategyTotal, questionTotal) {
-        if (this.get('strategies_viewed').length < strategyTotal) {
-            return false;
-        }
-
-        if (this.get('view_type') === 'SS' &&
-                this.get('strategy_selected') === null) {
-            return false;
-        }
-
-        if (this.get('view_type') === 'DS' &&
-                this.get('strategy_responses').length < questionTotal) {
-            return false;
-        }
-
-        return true;
-    }
-});
-**/
-
+module.exports.Location = Location;
 module.exports.Notepad = Notepad;
 module.exports.ActorList = ActorList;
 module.exports.ActorQuestionList = ActorQuestionList;
