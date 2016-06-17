@@ -90,7 +90,9 @@
                         <% for (var i=1; i < layers.length; i++) { %>
                             <% var layer = layers[i]; %>
                             <div>
-                                <input type="checkbox" class="select-layer" data-id="<%=layer.id%>" value="<%=layer.name%>"></input>
+                                <input type="checkbox" class="select-layer"
+                                    data-id="<%=layer.id%>" value="<%=layer.name%>"
+                                    <% if (layer.visible) { %>checked="checked" <% } %>></input>
                                 <%= layer.display_name %>
                             </div>
                         <% } %>
@@ -154,25 +156,22 @@
     </div>
 
     <div class="row spacer">
-        <div class="col-md-6">
-            <h4>Map Legends</h4>
-            <div id="base_map_layer"><%= layers[0].legend %></div>
+        <div class="col-md-12 text-center">
+            <div class="map-legend-container">
+                <div>
+                    <h4>Map Legends</h4>
+                    <div id="base_map_layer"><%= layers[0].legend %></div>
+                </div>
+                <% for (var i=1; i < layers.length; i++) { %>
+                    <% var layer = layers[i]; %>
+                    <div data-id="<%=layer.id%>"
+                         class="pull-left map_legend_<%=layer.id%> map_legend"
+                         style="display: none">
+                        <h5><%=layer.display_name%></h5>
+                        <%=layer.legend %>
+                    </div>
+                <% } %>
+            </div>
         </div>
     </div>
-
-    <div class="row spacer">
-        <% for (var i=1; i < layers.length; i++) { %>
-            <div class="col-md-2">
-                <% var layer = layers[i]; %>
-                <div data-id="<%=layer.id%>"
-                     class="map_legend_<%=layer.id%> map_legend"
-                     style="display: none">
-                    <h5><%=layer.display_name%></h5>
-                    <%=layer.legend %>
-                </div>
-            </div>
-        <% } %>
-    </div>
 </div>
-
-<div class="visualclear"></div>

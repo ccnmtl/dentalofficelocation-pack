@@ -3,7 +3,7 @@
     "name": "Boardmember #1",
     "question": "\"In your proposal, where would you recommend to have the oral health program and why?\"",
     "answer": "There is no single right answer for the location. What is most important is that you have completed your research and have come to a conclusion based on sound reasoning.",
-    "image": "../img/board/2015/12/18/board_01.png",
+    "image": "../static/img/board/board_01.png",
     "order": 1,
     "id": 9
 },
@@ -11,7 +11,7 @@
     "name": "Boardmember #2",
     "answer": "Ensuring accessibility:\r\n<ul>\r\n<li>Physical location must be readily accessible. Be close to public transportation, and a school, park, or a program that adolescents frequent.</li>\r\n<li>Hours of operation should be convenient times for adolescents (early mornings, after school, and extended evening hours and weekends)</li>\r\n<li>Improve awareness of the program in the local community. Collaborate with trusted community stakeholders</li>\r\n</ul>",
     "question": "\"Building a dental practice is one thing. Getting the youth to come to the dentist is another. How will you ensure that services are broadly accessible?\"",
-    "image": "../img/board/2015/12/18/board_02.png",
+    "image": "../static/img/board/board_02.png",
     "order": 2,
     "id": 10
 },
@@ -19,7 +19,7 @@
     "name": "Boardmember #3",
     "answer": "Ensuring acceptability:\r\n<ul>\r\n<li>Physical environment must be comfortable and non-threatening</li>\r\n<li>Assurance that services are kept confidential</li>\r\n<li>Staff should be knowledgeable, respectful, and understanding of youth culture and behavior</li>\r\n<li>Collaboration with community stakeholders helps establish credibility</li>\r\n</ul>",
     "question": "\"Not to be too direct, but you are not from this area and the local youth culture here is unique. What steps have you taken to refine your program to suit the specific culture and circumstances?\"",
-    "image": "../img/board/2015/12/18/board_03.png",
+    "image": "../static/img/board/board_03.png",
     "order": 3,
     "id": 11
 },
@@ -27,7 +27,7 @@
     "name": "Boardmember #4",
     "answer": "Ensuring Appropriateness:\r\n<ul>\r\n<li>Services should directly address the needs of the population served</li>\r\n<li>A rationale for the scope of services is important.  (Why are some available and not others?)</li>\r\n<li>An established system of referral/coordination of care with other healthcare resources should be in place.  (What occurs when a patient needs a service that is not provided by the program?)</li>\r\n</ul>",
     "question": "\"To be honest, I am a bit skeptical as we have had poor experiences with dental programs in the past. I have particular concerns as you have limited time to develop this program. How will you ensure that this program will meet the needs of the youth here?\"",
-    "image": "../img/board/2015/12/18/board_04.png",
+    "image": "../static/img/board/board_04.png",
     "order": 4,
     "id": 12
 },
@@ -35,7 +35,7 @@
     "name": "Boardmember #5",
     "answer": "Ensuring Effectiveness:\r\n<ul>\r\n<li>Programs should create and follow a manual of policies and procedures that are based on dental professional guidelines, specific to adolescents, and periodically updated</li>\r\n<li>Periodically evaluate programs for effectiveness (ex: chart audits, surveys).</li>\r\n<li>Partner with a local health center for support and resources to establish these policies.</li>\r\n</ul>",
     "question": "\"I am excited about the idea of a dental program as I know this is something we really need in this community. But, I do have questions about standards of care. How will your program reflect the current evidence based standards of care and professional guidelines?\"",
-    "image": "../img/board/2015/12/18/board_05.png",
+    "image": "../static/img/board/board_05.png",
     "order": 5,
     "id": 13
 },
@@ -43,7 +43,7 @@
     "name": "Boardmember #6",
     "answer": "Ensuring Equity:\r\n<ul>\r\n<li>Special adolescent populations (uninsured, emancipated minors, and undocumented individuals) may require special assistance from a lawyer or social worker to overcome restrictions to provision and eligibility for services</li>\r\n</ul>",
     "question": "\"We are dealing with teenagers not adults and that complicates things like consent and billing which are significant issues. How will you determine the provision and eligibility for services in this dental program?\"",
-    "image": "../img/board/2015/12/18/board_06.png",
+    "image": "../static/img/board/board_06.png",
     "order": 6,
     "id": 14
 }
