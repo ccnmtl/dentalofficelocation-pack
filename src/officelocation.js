@@ -366,9 +366,20 @@ var BoardView = Backbone.View.extend({
 var FinalReportView = Backbone.View.extend({
     initialize: function(options) {
         _.bindAll(this, 'render');
+        this.boardmembers = options.board;
+        this.template = require('../static/templates/page_four.html');
     },
     render: function() {
-        this.$el.html('Final Report View');
+        // sort by default order
+        var lst = this.boardmembers.toTemplate().sort(function(a, b) {
+            return a.order > b.order;
+        });
+
+        var markup = this.template({
+            boardmembers: lst
+        });
+
+        this.$el.html(markup);
         this.$el.show();
         this.trigger('complete', this);
     }
@@ -455,11 +466,7 @@ var OfficeLocationApp = {
         $parent.append(page);
         view = new FinalReportView({
             el: page,
-            location: location,
-            layers: layers,
-            actors: actors,
-            board: board,
-            noteView: noteView
+            board: board
         });
         views.push(view);
 
