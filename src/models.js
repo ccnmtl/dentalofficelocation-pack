@@ -85,7 +85,6 @@ var Actor = Backbone.Model.extend({
     },
     initialize: function(attributes) {
         if (attributes) {
-            Backbone.Model.prototype.initialize.apply(this, attributes);
             this.set('questions', new ActorQuestionList(attributes.questions));
         }
     },
@@ -138,6 +137,7 @@ var ActorList = Backbone.Collection.extend({
 
 module.exports.Location = Location;
 module.exports.Notepad = Notepad;
+module.exports.Actor = Actor;
 module.exports.ActorList = ActorList;
 module.exports.ActorQuestionList = ActorQuestionList;
 module.exports.MapLayerList = MapLayerList;
