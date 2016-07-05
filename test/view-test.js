@@ -98,8 +98,9 @@ describe('OfficeLocationApp', function() {
         it('interview stakeholder - ask a question', function(done) {
             jQuery('#profile-modal .btn-info.ask').first().click();
             waitFor(function() {
-                return jQuery('#profile-modal span.asked').length == 1 &&
-                    jQuery('#profile-modal .ask[disabled="disabled"]').length == 5;
+                return jQuery('#profile-modal span.asked').length === 1 &&
+                    jQuery('#profile-modal .ask[disabled="disabled"]')
+                        .length === 5;
             }, done);
         });
 
@@ -107,8 +108,10 @@ describe('OfficeLocationApp', function() {
             var sel = '#profile-modal .btn-close-question';
             jQuery(sel).click();
             waitFor(function() {
-                return jQuery('#profile-modal .btn-warning.ask').first().html().trim() === 'Asked' &&
-                    jQuery('#profile-modal .ask[disabled="disabled"]').length == 0;
+                return jQuery('#profile-modal .btn-warning.ask').first()
+                           .html().trim() === 'Asked' &&
+                    jQuery('#profile-modal .ask[disabled="disabled"]')
+                        .length === 0;
             }, done);
         });
     });
