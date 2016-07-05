@@ -23,6 +23,13 @@ function waitFor(testFx, doneFx, millis) {
     }, 250); //< repeat check every 250ms
 }
 
+function interviewStakeholder(doneFx) {
+    jQuery('img.actor').first().click();
+    waitFor(function() {
+        return jQuery('#profile-modal').is(':visible');
+    }, doneFx);
+}
+
 describe('OfficeLocationApp', function() {
     var app;
 
@@ -35,7 +42,7 @@ describe('OfficeLocationApp', function() {
     });
 
     describe('step1 interaction', function() {
-        it('step 1: initialized', function() {
+        it('initialized', function() {
             assert.equal(jQuery('.btn-step').length, 4);
             assert.equal(jQuery('.btn-print:visible').length, 1);
 
@@ -62,6 +69,47 @@ describe('OfficeLocationApp', function() {
         it('notepad', function() {
             jQuery('.btn-notepad').click();
             assert.isTrue(jQuery('#notepad-modal').is(':visible'));
+        });
+
+        it('interview stakeholder', function(done) {
+            interviewStakeholder(done);
+        });
+
+        it('interview stakeholder - cancel', function(done) {
+            jQuery('#profile-modal .btn-danger').click();
+            waitFor(function() {
+                return jQuery('#profile-modal').is(':hidden');
+            }, done);
+        });
+
+        it('interview stakeholder', function(done) {
+            interviewStakeholder(done);
+        });
+
+        it('interview stakeholder - continue', function(done) {
+            jQuery('#profile-modal .btn-info.interview').click();
+            waitFor(function() {
+                return jQuery('#profile-modal .panel-group').is(':visible') &&
+                    jQuery('#profile-modal .question-state').is(':visible') &&
+                    jQuery('.interview-state .question-state').is(':visible');
+            }, done);
+        });
+
+        it('interview stakeholder - ask a question', function(done) {
+            jQuery('#profile-modal .btn-info.ask').first().click();
+            waitFor(function() {
+                return jQuery('#profile-modal span.asked').length == 1 &&
+                    jQuery('#profile-modal .ask[disabled="disabled"]').length == 5;
+            }, done);
+        });
+
+        it('interview stakeholder - close question', function(done) {
+            var sel = '#profile-modal .btn-close-question';
+            jQuery(sel).click();
+            waitFor(function() {
+                return jQuery('#profile-modal .btn-warning.ask').first().html().trim() === 'Asked' &&
+                    jQuery('#profile-modal .ask[disabled="disabled"]').length == 0;
+            }, done);
         });
     });
 });
