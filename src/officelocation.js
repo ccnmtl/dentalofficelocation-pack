@@ -152,14 +152,15 @@ var InterviewView = BaseView.extend({
         'click img.actor': 'onShowProfile',
         'hidden.bs.modal #profile-modal': 'onHideProfile',
         'click button.interview': 'onInterview',
+        'show.bs.collapse': 'onCanAskQuestion',
         'shown.bs.collapse .collapse': 'onAskQuestion',
         'click .btn-close-question': 'onCloseQuestion',
         'hidden.bs.collapse': 'renderProfile'
     },
     initialize: function(options) {
         _.bindAll(this, 'render', 'renderActors', 'renderMap', 'renderProfile',
-            'onSelectLayer', 'onShowProfile', 'onHideProfile',
-            'onInterview', 'onAskQuestion', 'onCloseQuestion',
+            'onSelectLayer', 'onShowProfile', 'onHideProfile', 'onInterview',
+            'onCanAskQuestion', 'onAskQuestion', 'onCloseQuestion',
             'initializeActors', 'initializeMap', 'initializeNotes',
             'maybeComplete');
 
@@ -183,10 +184,16 @@ var InterviewView = BaseView.extend({
         this.renderActors();
         this.noteView.render();
 
-        this.trigger('complete', this);
+        this.maybeComplete();
     },
     onInterview: function(evt) {
         this.currentActor.set('interviewed', true);
+    },
+    onCanAskQuestion: function(evt) {
+        var $btn = jQuery(evt.target).prev().find('.btn');
+        if ($btn.attr('disabled') === 'disabled') {
+            evt.preventDefault();
+        }
     },
     onAskQuestion: function(evt) {
         var qId = jQuery(evt.target).data('id');
