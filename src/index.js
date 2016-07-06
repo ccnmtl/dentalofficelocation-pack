@@ -1,7 +1,7 @@
 /* global jQuery: true */
 
 require('!file?name=[name].[ext]!../static/index.html');
-require('!file?name=[name].[ext]!../static/img/ctl-logo.png');
+require('./static.js');
 
 // load and apply css
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
