@@ -27,7 +27,7 @@
             "question": "What things in particular about young adults in the neighborhood should be we considerate about in our dental program planning?"
         }
     ],
-    "image": "../static/img/interviews/bgperson_13.png",
+    "image": "./bgperson_13.png",
     "left": 375,
     "id": 1
 },
@@ -37,7 +37,7 @@
     "title": "Professor at Cromwell University",
     "top": 50,
     "questions": [],
-    "image": "../static/img/interviews/bgperson_12.png",
+    "image": "./bgperson_12.png",
     "left": 50,
     "id": 2
 },
@@ -69,7 +69,7 @@
             "question": "What professional guidelines do you think we need to be especially mindful of?"
         }
     ],
-    "image": "../static/img/interviews/bgperson_10.png",
+    "image": "./bgperson_10.png",
     "left": 570,
     "id": 3
 },
@@ -101,7 +101,7 @@
             "question": "What do you think are the main dental concerns of the local adolescents?"
         }
     ],
-    "image": "../static/img/interviews/bgperson_09.png",
+    "image": "./bgperson_09.png",
     "left": 525,
     "id": 4
 },
@@ -111,7 +111,7 @@
     "title": "Local Pediatric Dentist in Community",
     "top": 290,
     "questions": [],
-    "image": "../static/img/interviews/bgperson_07.png",
+    "image": "./bgperson_07.png",
     "left": 350,
     "id": 5
 },
@@ -143,7 +143,7 @@
             "question": "How would you ensure young adults have access to dental services?"
         }
     ],
-    "image": "../static/img/interviews/bgperson_06.png",
+    "image": "./bgperson_06.png",
     "left": 185,
     "id": 6
 },
@@ -175,7 +175,7 @@
             "question": "What steps can we take to make sure that the clinic is culturally appropriate to the young adults we are hoping to serve?"
         }
     ],
-    "image": "../static/img/interviews/bgperson_04.png",
+    "image": "./bgperson_04.png",
     "left": 155,
     "id": 7
 },
@@ -207,7 +207,7 @@
             "question": "We want to make sure our program is culturally appropriate and sensitive to local needs. Any advice?"
         }
     ],
-    "image": "../static/img/interviews/bgperson_01.png",
+    "image": "./bgperson_01.png",
     "left": 20,
     "id": 8
 }

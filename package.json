@@ -1,13 +1,13 @@
 {
   "name": "dentalofficelocation-pack",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Interactive to recreate a pediatric dental visit",
   "main": "src/index.js",
   "scripts": {
     "serve": "webpack-dev-server --hot --inline --open",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
-    "test-client": "mocha-phantomjs -R nyan test/view-test.html",
+    "test-client": "mocha-phantomjs -R nyan dist/view-test.html",
     "build": "webpack && webpack --config test/test.webpack.config.js"
   },
   "repository": {
