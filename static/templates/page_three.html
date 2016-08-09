@@ -1,10 +1,10 @@
-<div class="page-3 spacer">
-    <div class="row">
-        <div class="col-md-6">
-            <h4>3. Board of Director's Meeting</h4>
+<div class="page-3">
+    <div class="row info-header">
+        <div class="col-xs-6">
+            <h3>3. Board of Director's Meeting</h3>
         </div>
-        <div class="col-md-offset-3 col-md-3">
-            <a class="btn btn-default pull-right" href="#" data-target="#help-modal-3" data-toggle="modal" role="button">
+        <div class="col-xs-6 info-nav">
+            <a class="btn btn-default btn-sm pull-right" href="#" data-target="#help-modal-3" data-toggle="modal" role="button">
                 <span class="glyphicon glyphicon-question-sign"></span> Help</a>
             </a>
 
@@ -32,7 +32,7 @@
               </div>
             </div>
 
-            <a class="btn btn-default pull-right"  data-target="#notepad-modal-3" data-toggle="modal" role="button">
+            <a class="btn btn-default btn-sm pull-right"  data-target="#notepad-modal-3" data-toggle="modal" role="button">
                 <span class="glyphicon glyphicon-th-list"></span> Notepad
             </a>
 
@@ -54,7 +54,7 @@
               </div>
             </div> 
 
-            <a href="#" class="btn btn-default pull-right" data-toggle="modal" data-target="#map-view-modal">
+            <a href="#" class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#map-view-modal">
                 <span class="glyphicon glyphicon-picture"></span> Map View
             </a>
 
@@ -66,8 +66,8 @@
                     <h4 class="modal-title">Map View</h4>
                   </div>
                   <div class="modal-body">
-                        <div class="row map-container spacer">
-                            <div class="col-md-12 text-center">
+                        <div class="row map-container">
+                            <div class="col-xs-12 text-center">
                                 <div class="map-layers">
                                     <div class="map-layer">
                                         <table>
@@ -104,8 +104,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row spacer">
-                            <div class="col-md-12 text-center">
+                        <div class="row">
+                            <div class="col-xs-12 text-center">
                                 <div class="map-legend-container">
                                     <div>
                                         <h4>Map Legends</h4>
@@ -134,27 +134,26 @@
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-6">
+    <div class="row row-nopadding">
+        <div class="col-xs-8">
             <% if (complete) { %>
-                <div class="alert alert-success">
-                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <div class="success_instructions well left alert-success">
                      <b>All set!</b> You've answered ALL the boardmembers' questions. Continue on to see how you did.
                 </div>
             <% } else { %>
-                <div class="alert alert-info">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                <div class="basic_instructions well left alert-info">
                     Answer the boardmembers' questions, using your notes and map as reference.
                     Click the "Done" button only when you're finished answering. You cannot go back to change your response.
                 </div>
             <% } %>
         </div>
-        <div class="col-md-6">
+        <div class="col-xs-4">
+            &nbsp;
         </div>
     </div>
 
-    <div class="row spacer">
-        <div class="col-md-12 text-center">
+    <div class="row row-nopadding">
+        <div class="col-xs-12 text-center">
             <div class="boardmember-container">
                 <% for (var i = 0; i < boardmembers.length; i++) { %>
                     <% var actor = boardmembers[i]; %>
@@ -180,24 +179,24 @@
                             <b class="border-notch notch"></b>
                             <b class="notch"></b>
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-xs-1">
                                     <div class="dropcap">Q</div>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-xs-10">
                                     <p><%= actor.question %></p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-xs-1">
                                     <div class="dropcap">A</div>
                                 </div>
-                                <div class="col-md-10">
+                                <div class="col-xs-10">
                                     <p>Answer the boardmember's question, then click Done to continue.</p>
                                     <textarea></textarea>
                                 </div>
                             </div>
-                            <div class="row spacer">
-                                <div class="col-md-offset-11 col-md-1">
+                            <div class="row">
+                                <div class="col-xs-offset-11 col-xs-1">
                                     <button data-id="<%=actor.id%>" type="button" class="btn btn-info btn-answer-question disabled pull-right">Done</button>
                                 </div>
                             </div>

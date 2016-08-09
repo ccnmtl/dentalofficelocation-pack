@@ -1,9 +1,89 @@
-.btn-print {
-    margin-left: 20px !important;
+.interactive-container {
+    min-width: 860px;
 }
 
-.spacer {
-    margin-top: 10px;
+.activity-completed {
+    display: inline;
+    margin-left: -15px;
+}
+
+.steps {
+    margin: 10px 0 5px 0;
+}
+
+.office-location {
+    margin-top: 20px;
+}
+
+.info-header {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+.info-header h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 44px;
+    margin-left: -15px;
+    font-size: 20px;
+}
+
+.info-nav {
+    margin: 7px 0 0 0;
+    padding: 0;
+}
+
+.info-nav .btn {
+    background-color: #f5f5f5;
+    background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+}
+
+.info-nav .btn:hover {
+    background-color: #cccccc;
+    background-image: -ms-linear-gradient(top, #ffffff, #cccccc);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#cccccc));
+    background-image: -webkit-linear-gradient(top, #ffffff, #cccccc);
+    background-image: -o-linear-gradient(top, #ffffff, #cccccc);
+    background-image: linear-gradient(top, #ffffff, #cccccc);
+    background-image: -moz-linear-gradient(top, #ffffff, #cccccc);
+    background-repeat: repeat-x;
+}
+
+.row-nopadding {
+    margin: 0;
+    padding: 0;
+}
+
+.alert-container {
+    margin-left: -15px;
+}
+
+.actor-state-container {
+    padding: 0;
+    margin-left: 15px;
+    margin-right: 0;
+}
+
+.basic_instructions {
+    padding: 10px 10px 10px 60px;
+    background: #d9edf7 url('../img/icon_info.png') no-repeat 10px center;
+    vertical-align: middle;
+    color: #3a87ad;
+    min-height: 56px;
+}
+
+.success_instructions {
+    padding: 10px 10px 10px 60px;
+    background: #dff0d8 url('../img/icon_check.png') no-repeat 10px center;
+    vertical-align: middle;
+    color: #468847;
+    min-height: 56px;
 }
 
 .page-1 img.actor {
@@ -12,7 +92,7 @@
 
 .actor-state {
     border: 1px solid #dedede;
-    width: 40px;
+    width: 42px;
     height: 56px;
     margin: 5px 5px 5px 5px;
     cursor: pointer;
@@ -45,6 +125,7 @@ a.btn.btn-default {
 
 .row.map-container {
     background-color: #f2f2f2;
+    margin: 0;
 }
 
 .map-layers {
@@ -123,14 +204,19 @@ a.btn.btn-default {
 
 /** Map Legends **/
 
+.map-legends {
+    margin: 0;
+    padding: 0;
+}
+
 .map-legend-container {
-    margin: 5px 5px 5px 0;
-    padding: 5px;
+    margin: 0;
+    padding: 0;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     font-size: 12px;
-    width: 875px;
+    width: 860px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -143,6 +229,7 @@ a.btn.btn-default {
     -moz-border-radius: 4px;
     border-radius: 4px;
     font-size: 12px;
+    width: 195px;
 }
 
 .map_legend h5 {
@@ -229,11 +316,25 @@ a.btn.btn-default {
     margin-left: 15px;
 }
 
+.profile div.actor-profile-container {
+     margin: 5px;
+}
+
 .question-state {
     position: absolute;
     margin-top: -15px;
     margin-left: 9px;
     color: #ccc;
+}
+
+.title-container .question-state {
+    position: absolute;
+    margin-top: 38px;
+    margin-left: 9px;
+}
+
+.select-actor-container {
+    margin-top: 10px;
 }
 
 .question-state span.asked {
@@ -258,9 +359,7 @@ a.btn.btn-default {
 .question-container,
 .boardmember-container {
     width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+    margin: 20px auto;
     text-align: left;
 }
 

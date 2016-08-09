@@ -1,37 +1,33 @@
-<div class="row">
-    <div class="col-md-1 text-center">
-        <img src="<%= image %>"></img>
-        <div class="question-state">
-            <% if (interviewed && questions.length > 0) { %>
-                 <% for (var i = 0; i < 3; i++) { %>
-                    <% if (questions[i].asked > 0) { %>
-                        <span class="asked">&bull;</span>
-                    <% } else { %>
-                        <span>&bull;</span>
-                    <% } %>
+<div class="title-container clearfix">
+    <img src="<%= image %>" class="pull-left" />
+    <div class="question-state">
+        <% if (interviewed && questions.length > 0) { %>
+             <% for (var i = 0; i < 3; i++) { %>
+                <% if (questions[i].asked > 0) { %>
+                    <span class="asked">&bull;</span>
+                <% } else { %>
+                    <span>&bull;</span>
                 <% } %>
             <% } %>
-        </div>
+        <% } %>
     </div>
-    <div class="col-md-11">
+    <div class="pull-left">
         <div class="name"><%= name %></div>
         <div class="title"><%= title %></div>
     </div>
 </div>
 
-<div class="row spacer">
-    <div class="col-md-12">
-        <%= profile %>
-    </div>
+<div class="actor-profile-container"> 
+    <%= profile %>
 </div>
 
-<div class="row spacer">
-    <div class="col-md-7">
+<div class="row">
+    <div class="col-xs-7">
         <% if (questions.length > 0) { %>
             <% if (!interviewed) { %>
                 <% if (interviewCount < 4) { %>
                     <div class="select-actor-container">
-                        <div><b>Do you want to interview <%= name %>?</b></div>
+                        <p><b>Do you want to interview <%= name %>?</b></p>
                         <div>
                             <button class="btn interview btn-info">Yes</button>
                             <button class="btn btn-danger" data-dismiss="modal">Not Right Now</button>
@@ -87,7 +83,7 @@
             <% } %>
         <% } %>
     </div>
-    <div class="col-md-5">
+    <div class="col-xs-5">
         <div class="well">
             <h3 class="popover-title">Notepad</h3>
             <div class="popover-content">
