@@ -47,7 +47,7 @@ describe('OfficeLocationApp', function() {
     describe('step1 interaction', function() {
         it('initialized', function() {
             assert.equal(jQuery('.btn-step').length, 4);
-            assert.equal(jQuery('.btn-print:visible').length, 1);
+            assert.equal(jQuery('.activity-completed:visible').length, 0);
 
             assert.equal(jQuery('.page-1:visible').length, 1);
             assert.isTrue(

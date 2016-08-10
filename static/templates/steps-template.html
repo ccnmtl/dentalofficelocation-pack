@@ -14,7 +14,7 @@
     >Step <%=i + 1%></a>
 <% } %>
 
-<div class="activity-completed" style="display: inline">
+<div class="activity-completed" <% if (!done) { %>style="display: none"<% } %>>
     <div class="btn btn-success done" style="padding-left: 30px;">
         <span class="glyphicon glyphicon-ok"></span>
         Activity Complete
