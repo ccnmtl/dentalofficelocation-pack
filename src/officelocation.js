@@ -80,6 +80,7 @@ var BaseView = Backbone.View.extend({
     },
     onHideProfile: function(evt) {
         this.currentActor = undefined;
+        this.currentQuestion = undefined;
         this.noteView.render();
 
         this.maybeComplete();
