@@ -39,7 +39,7 @@ NPM INSTALLATION
 ```
 
 #### Configuration
-The interactive will alert the user on page navigation if the activity is not yet complete. To turn off this behavior, add an ```quiet=1``` parameter to the url. For example:
+The interactive will alert the user on page navigation if the activity is not yet complete. To turn off this behavior, add a ```quiet=1``` parameter to the url. For example:
 
 ```
 <code>
