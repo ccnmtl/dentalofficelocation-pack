@@ -1,6 +1,6 @@
 /* global describe: true, before: true, it: true */
 
-require('!file?name=[name].[ext]!./view-test.html');
+require('!file-loader?name=[name].[ext]!./view-test.html');
 require('../src/static.js');
 
 var chai = require('chai');
