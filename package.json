@@ -1,6 +1,6 @@
 {
   "name": "dentalofficelocation-pack",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A simulation to choose location for dental program office",
   "main": "src/index.js",
   "scripts": {
@@ -46,6 +46,7 @@
     "chai": "^4.0.2",
     "jscs": "^3.0.7",
     "jshint": "^2.9.4",
+    "loglevel": "^1.4.1",
     "mocha": "^3.4.2",
     "mocha-phantomjs": "^4.1.0",
     "phantomjs-prebuilt": "^2.1.14",
