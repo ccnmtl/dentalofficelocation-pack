@@ -1,8 +1,8 @@
 /* global jQuery: true, module: true */
 
 jQuery = require('jquery');
-var Backbone = require('backbone');
 var _ = require('underscore');
+var Backbone = require('backbone');
 
 var STAKEHOLDER_LIMIT = 4;
 var QUESTION_LIMIT = 3;
