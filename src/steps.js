@@ -1,8 +1,8 @@
-/* global jQuery: true, module: true */
+/* global jQuery: true, module: true, confirm: true */
 
 jQuery = require('jquery');
-var Backbone = require('backbone');
 var _ = require('underscore');
+var Backbone = require('backbone');
 
 var Step = Backbone.Model.extend({
     defaults: {
@@ -115,6 +115,15 @@ module.exports = Backbone.View.extend({
         window.print();
     },
     onStep: function(evt) {
+        var idx = this.currentStep.get('idx');
+        if (!this.steps.at(idx).get('complete')) {
+            if (!confirm('This step is not complete. ' +
+                'Your progress will not be saved if you leave this page. ' +
+                'Click Cancel to stay on this page. OK to continue.')) {
+                return;
+            }
+        }
+
         var nextIdx = parseInt(jQuery(evt.currentTarget).data('idx'), 10);
         if (this.currentStep.get('idx') !== nextIdx) {
             this.currentStep.set('idx', nextIdx);
