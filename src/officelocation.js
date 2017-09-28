@@ -63,7 +63,6 @@ var BaseView = Backbone.View.extend({
     },
     onSelectLayer: function(evt) {
         var layerId = jQuery(evt.target).data('id');
-        var isChecked = jQuery(evt.target).is(':checked');
         var layer = this.layers.get(layerId);
 
         layer.set('visible', jQuery(evt.target).is(':checked'));
@@ -231,11 +230,12 @@ var PickLocationView = BaseView.extend({
         'click .map-layers table tr td': 'onSelectLocation',
     },
     initialize: function(options) {
-        _.bindAll(this, 'render', 'renderActors', 'renderMap', 'renderProfile',
-                  'onSelectLayer', 'onShowProfile', 'onHideProfile',
-                  'onCloseQuestion', 'onMouseOver', 'onMouseOut',
-                  'initializeActors', 'initializeMap', 'initializeNotes',
-                  'maybeComplete');
+        _.bindAll(
+            this, 'render', 'renderActors', 'renderMap', 'renderProfile',
+            'onSelectLayer', 'onShowProfile', 'onHideProfile',
+            'onCloseQuestion', 'onMouseOver', 'onMouseOut',
+            'initializeActors', 'initializeMap', 'initializeNotes',
+            'maybeComplete');
 
         this.complete = false;
         this.initializeMap(options.layers);
@@ -398,7 +398,6 @@ var OfficeLocationApp = {
         var currentIndex = array.length;
         var temporaryValue;
         var randomIndex;
-        var selected = 1;
 
         // While there remain elements to shuffle...
         while (0 !== currentIndex) {

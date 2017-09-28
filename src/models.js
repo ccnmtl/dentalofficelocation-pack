@@ -4,10 +4,6 @@ jQuery = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 
-var STAKEHOLDER_LIMIT = 4;
-var QUESTION_LIMIT = 3;
-var BOARDMEMBER_LIMIT = 6;
-
 var Notepad = Backbone.Model.extend({
     defaults: {
         notes: ''

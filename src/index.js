@@ -5,6 +5,7 @@ require('./static.js');
 
 // load and apply css
 require('!style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
+// eslint-disable-next-line security/detect-non-literal-require
 require('!style-loader!css-loader!bootstrap-arrow-buttons/dist/css/' +
         'bootstrap-arrow-buttons.css');
 require('!style-loader!css-loader!../static/css/common.css');

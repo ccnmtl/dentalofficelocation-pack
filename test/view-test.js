@@ -34,14 +34,13 @@ function interviewStakeholder(doneFx) {
 }
 
 describe('OfficeLocationApp', function() {
-    var app;
 
     before(function() {
         var elt = jQuery('.office-location');
         assert.isDefined(elt);
         jQuery(elt).html('');
 
-        app = module.OfficeLocationApp.initialize();
+        module.OfficeLocationApp.initialize();
     });
 
     describe('step1 interaction', function() {
@@ -112,7 +111,7 @@ describe('OfficeLocationApp', function() {
             jQuery(sel).click();
             waitFor(function() {
                 return jQuery('#profile-modal .btn-warning.ask').first()
-                           .html().trim() === 'Asked' &&
+                    .html().trim() === 'Asked' &&
                     jQuery('#profile-modal .ask[disabled="disabled"]')
                         .length === 0;
             }, done);
