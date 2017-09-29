@@ -44,9 +44,9 @@
   "license": "GPL-3.0",
   "greenkeeper": {
     "ignore": [
-        "file-loader",
+      "file-loader"
     ]
-  },    
+  },
   "devDependencies": {
     "chai": "^4.0.2",
     "jscs": "^3.0.7",
