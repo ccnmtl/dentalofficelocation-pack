@@ -1,6 +1,8 @@
 Dental Office Location: Standalone Interactive Exercise 
 ==========
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ccnmtl/dentalofficelocation-pack.svg)](https://greenkeeper.io/)
+
 #### Background
 You are a North Oralington licensed general dentist working in a private suburban practice when you are approached by Duane County's St. Cabrini Adolescent Health Center (AHC). They are seeking your assistance in expanding their health services to include an oral health program to serve the underserved poor/low income adolescents in the local neighborhood. Even though you don’t have extensive experience working with young adults, you agree to help.
 
