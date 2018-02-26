@@ -43,7 +43,8 @@
   "license": "GPL-3.0",
   "greenkeeper": {
     "ignore": [
-      "bootstrap"
+      "bootstrap",
+      "webpack"
     ]
   },
   "devDependencies": {
@@ -71,6 +72,6 @@
     "underscore": "1.4.4 - 1.8.3",
     "underscore-template-loader": "^0.8.0",
     "url-loader": "^0.6.2",
-    "webpack": "^4.0.0"
+    "webpack": "^3.0.0"
   }
 }
