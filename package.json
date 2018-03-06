@@ -43,8 +43,7 @@
   "license": "GPL-3.0",
   "greenkeeper": {
     "ignore": [
-      "bootstrap",
-      "webpack"
+      "bootstrap"
     ]
   },
   "devDependencies": {
@@ -57,6 +56,9 @@
     "mocha": "^5.0.0",
     "mocha-phantomjs-core": "^2.1.2",
     "phantomjs-prebuilt": "^2.1.15",
+    "css-loader": "^0.28.10",
+    "file-loader": "^1.1.11",
+    "style-loader": "^0.20.2",
     "webpack-dev-server": "^3.0.0",
     "webpack-cli": "2.0.10"
   },
@@ -64,15 +66,9 @@
     "backbone": "1.3.3",
     "bootstrap": "^3.3.7",
     "bootstrap-arrow-buttons": "^1.0.4",
-    "css-loader": "^0.28.4",
-    "file-loader": "^1.1.4",
     "jquery": "^3.2.1",
-    "json-loader": "^0.5.4",
-    "style-loader": "^0.20.1",
-    "svg-loader": "0.0.2",
     "underscore": "1.4.4 - 1.8.3",
     "underscore-template-loader": "^1.0.0",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.0.0"
+    "webpack": "~4.1.0"
   }
 }

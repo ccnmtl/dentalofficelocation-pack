@@ -3,8 +3,7 @@
 require('!file-loader?name=[name].[ext]!./view-test.html');
 require('../src/static.js');
 
-var chai = require('chai');
-var assert = chai.assert;
+var assert = require('assert');
 
 var jQuery = require('jquery');
 var module = require('../src/officelocation');
@@ -37,7 +36,7 @@ describe('OfficeLocationApp', function() {
 
     before(function() {
         var elt = jQuery('.office-location');
-        assert.isDefined(elt);
+        assert.ok(elt);
         jQuery(elt).html('');
 
         module.OfficeLocationApp.initialize();
@@ -49,8 +48,8 @@ describe('OfficeLocationApp', function() {
             assert.equal(jQuery('.activity-completed:visible').length, 0);
 
             assert.equal(jQuery('.page-1:visible').length, 1);
-            assert.isTrue(
-                jQuery('a[href="#one"]').hasClass('btn-primary'));
+            assert.strictEqual(
+                jQuery('a[href="#one"]').hasClass('btn-primary'), true);
             assert.equal(
                 jQuery('a[href="#two"]').attr('disabled'), 'disabled');
             assert.equal(
@@ -65,12 +64,12 @@ describe('OfficeLocationApp', function() {
 
         it('help', function() {
             jQuery('.btn-help').click();
-            assert.isTrue(jQuery('#help-modal').is(':visible'));
+            assert.strictEqual(jQuery('#help-modal').is(':visible'), true);
         });
 
         it('notepad', function() {
             jQuery('.btn-notepad').click();
-            assert.isTrue(jQuery('#notepad-modal').is(':visible'));
+            assert.strictEqual(jQuery('#notepad-modal').is(':visible'), true);
         });
 
         it('interview stakeholder', function(done) {

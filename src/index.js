@@ -4,16 +4,14 @@ require('!file-loader?name=[name].[ext]!../static/index.html');
 require('./static.js');
 
 // load and apply css
-require('!style-loader!css-loader!bootstrap/dist/css/bootstrap.min.css');
-// eslint-disable-next-line security/detect-non-literal-require
-require('!style-loader!css-loader!bootstrap-arrow-buttons/dist/css/' +
-        'bootstrap-arrow-buttons.css');
-require('!style-loader!css-loader!../static/css/common.css');
-require('!style-loader!css-loader!../static/css/steps.css');
-require('!style-loader!css-loader!../static/css/officelocation.css');
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-arrow-buttons/dist/css/bootstrap-arrow-buttons.css';
+import '../static/css/common.css';
+import '../static/css/steps.css';
+import '../static/css/officelocation.css';
 
-var jQuery = require('jquery');
-var module = require('./officelocation.js');
+import jQuery from 'jquery';
+import module from './officelocation';
 
 jQuery(document).ready(function() {
     module.OfficeLocationApp.initialize();
