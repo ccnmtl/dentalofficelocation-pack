@@ -1,6 +1,5 @@
-/* global jQuery: true, module: true */
+/* global module: true */
 
-jQuery = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 
