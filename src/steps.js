@@ -1,6 +1,7 @@
-/* global jQuery: true, module: true, confirm: true */
+/* global module: true */
 
-jQuery = require('jquery');
+// eslint-disable-next-line no-redeclare
+var jQuery = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 
