@@ -21,7 +21,7 @@ var MapLayer = Backbone.Model.extend({
         visible: false
     },
     toTemplate: function() {
-        return _(this.attributes).clone();
+        return _.clone(this.attributes);
     }
 });
 
@@ -49,7 +49,7 @@ var ActorQuestion = Backbone.Model.extend({
         asked: false
     },
     toTemplate: function() {
-        return _(this.attributes).clone();
+        return _.clone(this.attributes);
     }
 });
 
