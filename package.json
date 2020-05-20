@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "backbone": "1.4.0",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.1.2",
     "bootstrap-arrow-buttons": "^1.0.4",
     "jquery": "^3.2.1",
     "underscore": "1.10.2",
