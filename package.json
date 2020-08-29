@@ -67,7 +67,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-arrow-buttons": "^1.0.4",
     "jquery": "^3.2.1",
-    "underscore": "1.10.2",
+    "underscore": "1.11.0",
     "underscore-template-loader": "^1.0.0",
     "webpack": "~4.44.0"
   }
