@@ -64,7 +64,7 @@
     "backbone": "1.4.0",
     "bootstrap": "^3.3.7",
     "bootstrap-arrow-buttons": "^1.0.4",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "underscore": "1.11.0",
     "underscore-template-loader": "^1.0.0",
     "webpack": "~4.44.0"
