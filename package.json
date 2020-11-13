@@ -4,7 +4,7 @@
   "description": "A simulation to choose location for dental program office",
   "main": "src/index.js",
   "scripts": {
-    "serve": "webpack-dev-server --hot --inline --open",
+    "serve": "webpack serve --hot --inline --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
     "test-client": "mocha-chrome test/view-test.html",
@@ -58,7 +58,7 @@
     "file-loader": "^6.0.0",
     "style-loader": "^2.0.0",
     "webpack-dev-server": "^3.0.0",
-    "webpack-cli": "~4.1.0"
+    "webpack-cli": "~4.2.0"
   },
   "dependencies": {
     "backbone": "1.4.0",
