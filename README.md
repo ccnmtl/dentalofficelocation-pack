@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/ccnmtl/dentalofficelocation-pack/workflows/build-and-test/badge.svg)](https://github.com/ccnmtl/dentalofficelocation-pack/actions)
+
 Dental Office Location: Standalone Interactive Exercise 
 ==========
 
