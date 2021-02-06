@@ -1,8 +1,9 @@
 /* global describe: true, before: true, it: true */
+require('!file-loader?name=[name].[ext]!../test/view-test.html');
 
 require('../src/static.js');
-
-var assert = require('assert');
+var chai = require('chai');
+var assert = chai.assert;
 
 var jQuery = require('jquery');
 var module = require('../src/officelocation');
