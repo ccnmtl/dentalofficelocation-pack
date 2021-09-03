@@ -4,7 +4,7 @@
   "description": "A simulation to choose location for dental program office",
   "main": "src/index.js",
   "scripts": {
-    "serve": "webpack serve --hot --inline --mode development",
+    "serve": "webpack serve --hot --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
     "test-client": "mocha-chrome dist/view-test.html",
