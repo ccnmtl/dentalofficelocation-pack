@@ -1,5 +1,7 @@
 module.exports = {
-    entry: __dirname + '/src/index.js',
+    entry: [
+        __dirname + '/src/index.js'
+    ],
     output: {
         filename: './bundle.js'
     },
@@ -20,25 +22,11 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            esModule: false
-                        }
-                    }
-                ]
+                type: 'asset/resource'
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            esModule: false
-                        }
-                    }
-                ]
+                type: 'asset/resource'
             }
         ]
     }
