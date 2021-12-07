@@ -67,6 +67,6 @@
     "jquery": "^3.5.0",
     "underscore": "1.13.1",
     "underscore-template-loader": "^1.0.0",
-    "webpack": "~5.64.1"
+    "webpack": "~5.65.0"
   }
 }
