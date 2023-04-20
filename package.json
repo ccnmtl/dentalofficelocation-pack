@@ -7,7 +7,7 @@
     "serve": "webpack serve --hot --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
-    "test-client": "mocha-chrome dist/view-test.html",
+    "test-client": "mocha-headless-chrome -f dist/view-test.html",
     "build": "webpack --mode production && webpack --config test/test.webpack.config.js --mode development"
   },
   "repository": {
@@ -53,7 +53,7 @@
     "eslint-plugin-security": "^1.4.0",
     "loglevel": "^1.4.1",
     "mocha": "^10.0.0",
-    "mocha-chrome": "^2.2.0",
+    "mocha-headless-chrome": "^4.0.0",
     "css-loader": "^6.2.0",
     "file-loader": "^6.0.0",
     "style-loader": "^3.0.0",
