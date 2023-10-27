@@ -46,7 +46,7 @@
     ]
   },
   "devDependencies": {
-    "acorn": "8.10.0",
+    "acorn": "8.11.2",
     "chai": "^4.0.2",
     "eslint": "~8.52.0",
     "eslint-plugin-no-unsafe-innerhtml": "^1.0.16",
