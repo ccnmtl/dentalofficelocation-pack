@@ -1,4 +1,4 @@
-/* eslint indent: 0, security/detect-non-literal-require: 0 */
+/* eslint indent: 0 */
 
 require('!file-loader?name=[name].[ext]!../static/img/logo-ctl.png');
 require('!file-loader?name=[name].[ext]!../static/img/logo-cdm.png');
