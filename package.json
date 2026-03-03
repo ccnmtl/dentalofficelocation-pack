@@ -7,7 +7,7 @@
     "serve": "webpack serve --hot --mode development",
     "test": "npm run test-unit && npm run test-client",
     "test-unit": "mocha test/model-test.js",
-    "test-client": "sh -c \"[ \\\"$CI\\\" = \\\"true\\\" ] && mocha-headless-chrome -f dist/view-test.html --no-sandbox || mocha-headless-chrome -f dist/view-test.html\"", 
+    "test-client": "sh -c \"[ \\\"$CI\\\" = \\\"true\\\" ] && mocha-headless-chrome -f dist/view-test.html --no-sandbox || mocha-headless-chrome -f dist/view-test.html\"",
     "build": "webpack --mode production && webpack --config test/test.webpack.config.js --mode development"
   },
   "repository": {
@@ -46,6 +46,8 @@
     ]
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.4",
+    "@eslint/js": "^10.0.1",
     "acorn": "8.16.0",
     "chai": "^6.0.0",
     "css-loader": "^7.0.0",
