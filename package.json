@@ -51,7 +51,7 @@
     "acorn": "8.16.0",
     "chai": "^6.0.0",
     "css-loader": "^7.0.0",
-    "eslint": "~10.1.0",
+    "eslint": "~10.2.0",
     "file-loader": "^6.0.0",
     "globals": "^17.0.0",
     "loglevel": "^1.4.1",
